@@ -64,7 +64,6 @@ const fetchUsersFailure = (state, action) => {
   };
 };
 const fetchMoreUsers = (state, action) => {
-  console.log("More Users...", state.users, action.payload);
   return {
     ...state,
     users: [...state.users, ...action.payload],
@@ -79,7 +78,6 @@ const fetchWithNationality = (state, action) => {
 };
 
 const deleteUser = (state, action) => {
-  console.log("State <--", state, action.payload);
   return {
     ...state,
     users: state.users.filter(
@@ -89,15 +87,13 @@ const deleteUser = (state, action) => {
 };
 
 const searchUsers = (state, action) => {
-  console.log("Search User --> Reducer", state, action);
   return {
     ...state,
     search: action.search,
   };
 };
 
-const fetchMoresrsRequest = (state, action) => {
-  console.log("X dala ha bux", action);
+const fetchMoresrsRequest = (state) => {
   return {
     ...state,
     // loading: false,
@@ -115,8 +111,7 @@ const fetchMoresrsFailure = (state, action) => {
   return { ...state, loading: false, error: action.payload };
 };
 
-const fetchUseresWithNationalityRequest = (state, action) => {
-  console.log("X dala ha bux", action);
+const fetchUseresWithNationalityRequest = (state) => {
   return {
     ...state,
     // loading: false,

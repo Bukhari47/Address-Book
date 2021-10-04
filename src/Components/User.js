@@ -14,7 +14,7 @@ function User() {
       </Divider>
       <Col span={4}></Col>
       <Col span={16}>
-        <div className="App">
+        <div style={{ textAlign: "center" }}>
           <img
             src={user.picture.large}
             alt={user.picture.large}

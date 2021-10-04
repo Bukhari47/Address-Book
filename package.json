@@ -2,7 +2,15 @@
   "name": "ps-redux",
   "description": "React and Redux Pluralsight course by Cory House",
   "scripts": {
-    "start": "webpack serve --config webpack.config.dev.js --port 3000"
+    "start": "webpack serve --config webpack.config.dev.js --port 3000",
+    "test": "jest --watch"
+  },
+  "jest": {
+    "testEnvoirment": "jsdpm",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/tools/styleMock.js"
+    }
   },
   "dependencies": {
     "antd": "^4.16.13",
@@ -36,7 +44,7 @@
     "fetch-mock": "9.11.0",
     "html-webpack-plugin": "5.3.2",
     "http-server": "0.12.3",
-    "jest": "27.0.6",
+    "jest": "^27.0.6",
     "json-server": "0.16.3",
     "mini-css-extract-plugin": "2.1.0",
     "node-fetch": "^2.6.1",
