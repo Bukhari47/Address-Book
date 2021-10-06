@@ -3,7 +3,7 @@ const initialState = {
   loading: false,
   users: [],
   error: "",
-  nationlity: "",
+  nationality: "",
   search: "",
 };
 
@@ -26,11 +26,17 @@ const fetchUserData = (state = initialState, action) => {
     case actionTypes.GET_NATIONALITY:
       return fetchWithNationality(state, action);
     case actionTypes.FETCH_WITH_NATIONALITY_REQUEST:
-      return fetchUseresWithNationalityRequest(state, action);
+      return fetchUsersWithNationalityRequest(state, action);
     case actionTypes.FETCH_WITH_NATIONALITY_SUCCESS:
-      return fetchUseresWithNationalitySuccess(state, action);
+      return fetchUsersWithNationalitySuccess(state, action);
     case actionTypes.FETCH_WITH_NATIONALITY_FAILURE:
-      return fetchUseresWithNationalityFailure(state, action);
+      return fetchUsersWithNationalityFailure(state, action);
+    case actionTypes.FETCH_MORE_WITH_NATIONALITY_REQUEST:
+      return fetchMoresrsWithNationalityRequest(state, action);
+    case actionTypes.FETCH_MORE_WITH_NATIONALITY_SUCCESS:
+      return fetchMoreUsersWithNationalitySucces(state, action);
+    case actionTypes.FETCH_MORE_WITH_NATIONALITY_FAILURE:
+      return fetchMoresrsWithNationalityFailure(state, action);
     case actionTypes.DELETE_USER:
       return deleteUser(state, action);
     case actionTypes.SEARCH_USER:
@@ -41,8 +47,7 @@ const fetchUserData = (state = initialState, action) => {
 };
 export default fetchUserData;
 
-const fetchUsersRequest = (state, action) => {
-  console.log("X dala ha bux", action);
+const fetchUsersRequest = (state) => {
   return {
     ...state,
     loading: false,
@@ -111,13 +116,13 @@ const fetchMoresrsFailure = (state, action) => {
   return { ...state, loading: false, error: action.payload };
 };
 
-const fetchUseresWithNationalityRequest = (state) => {
+const fetchUsersWithNationalityRequest = (state) => {
   return {
     ...state,
     // loading: false,
   };
 };
-const fetchUseresWithNationalitySuccess = (state, action) => {
+const fetchUsersWithNationalitySuccess = (state, action) => {
   return {
     ...state,
     // loading: true,
@@ -125,10 +130,28 @@ const fetchUseresWithNationalitySuccess = (state, action) => {
     error: "",
   };
 };
-const fetchUseresWithNationalityFailure = (state, action) => {
+const fetchUsersWithNationalityFailure = (state, action) => {
   return {
     ...state,
     loading: false,
     error: action.payload,
   };
+};
+const fetchMoresrsWithNationalityRequest = (state) => {
+  return {
+    ...state,
+    // loading: false,
+  };
+};
+const fetchMoreUsersWithNationalitySucces = (state, action) => {
+  console.log("Nat Users Reponse", action.payload);
+  return {
+    ...state,
+    // loading: true,
+    users: [...state.users, ...action.payload],
+    error: "",
+  };
+};
+const fetchMoresrsWithNationalityFailure = (state, action) => {
+  return { ...state, loading: false, error: action.payload };
 };

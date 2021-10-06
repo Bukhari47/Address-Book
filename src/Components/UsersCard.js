@@ -1,15 +1,11 @@
 import React from "react";
-
 import { Col, Card, Avatar } from "antd";
-
 import { MoreOutlined, DeleteOutlined } from "@ant-design/icons";
 import { deleteUserDetials } from "../Redux/Actions/usersAction";
-
 import { Link } from "react-router-dom";
 const { Meta } = Card;
 
 function UsersCard({ user }) {
-  console.log("Users", user);
   return (
     <>
       <Col span={8} style={{ marginTop: "10px" }}>

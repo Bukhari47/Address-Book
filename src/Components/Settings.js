@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Divider, Select } from "antd";
 import { getNationality } from "../Redux/Actions/usersAction";
 import { useHistory } from "react-router-dom";
-import { fetchUseresWithNationality } from "../Redux/Actions/usersAction";
+import { fetchUsersWithNationality } from "../Redux/Actions/usersAction";
 const { Option } = Select;
 
 function Settings() {
@@ -10,16 +10,13 @@ function Settings() {
   const [userNationality, setUserNationality] = useState("");
 
   function handleChange(value) {
-    console.log("<-- Nat -->", value);
     // Saving User Value
     setUserNationality(value);
     // Getting Value From Redux
     getNationality(value);
-    fetchUseresWithNationality(value);
+    fetchUsersWithNationality(value);
     // Redirecting...!!
     history.push("/");
-
-    console.log("After Redirecting");
   }
 
   return (

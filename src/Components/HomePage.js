@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Row, PageHeader, Spin, Card } from "antd";
+import React, { useState } from "react";
+import { Row, PageHeader, Spin } from "antd";
 import {
   fetchMoreUsers,
-  fetchUser,
-  fetchUseresWithNationality,
-  fetchMoreUseresWithNationality,
+  fetchMoreUsersWithNationality,
 } from "../Redux/Actions/usersAction";
 import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -14,20 +12,14 @@ export default function HomePage() {
   const users = useSelector((state) => state.users);
   const loading = useSelector((state) => state.loading);
   const search = useSelector((state) => state.search);
-  const nationlity = useSelector((state) => state.nationlity);
+  const nationality = useSelector((state) => state.nationality);
   const [hasMore, setHasMore] = useState(true);
-  useEffect(() => {
-    if (nationlity) {
-      fetchUseresWithNationality(nationlity);
-    } else {
-      fetchUser();
-    }
-  }, [nationlity]);
+
   const loadMoreUsers = () => {
     if (users.length <= 999) {
-      if (nationlity !== "") {
-        console.log("Load More user...", nationlity);
-        fetchMoreUseresWithNationality(nationlity);
+      if (nationality) {
+        console.log("Load More user...", nationality);
+        fetchMoreUsersWithNationality(nationality);
       } else {
         console.log("Load More user...");
         fetchMoreUsers();

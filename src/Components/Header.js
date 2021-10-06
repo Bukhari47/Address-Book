@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout, Menu, Select } from "antd";
 import { filterUser } from "../Redux/Actions/usersAction";
 import { Link } from "react-router-dom";
 import { getNationality } from "../Redux/Actions/usersAction";
-import { fetchUseresWithNationality } from "../Redux/Actions/usersAction";
+import {
+  fetchUsersWithNationality,
+  fetchUser,
+} from "../Redux/Actions/usersAction";
+import { useSelector } from "react-redux";
 const { Option } = Select;
 const { Header } = Layout;
 function AppHeader() {
+  const nationality = useSelector((state) => state.nationality);
   const [userNationality, setUserNationality] = useState("");
+
+  useEffect(() => {
+    if (nationality) {
+      fetchUsersWithNationality(nationality);
+    } else {
+      fetchUser();
+    }
+  }, [nationality]);
 
   function handleChange(value) {
     console.log("<-- Nat -->", value);
@@ -15,7 +28,7 @@ function AppHeader() {
     setUserNationality(value);
     // Getting Value From Redux
     getNationality(value);
-    fetchUseresWithNationality(value);
+    fetchUsersWithNationality(value);
     // Redirecting...!!
 
     console.log("After Redirecting");
@@ -32,7 +45,7 @@ function AppHeader() {
           <Menu.Item key={"Country"}>
             <Link to="/settings">Settings</Link>
           </Menu.Item>
-          <Menu.Item key={"Country"} disabled="true">
+          {/* <Menu.Item key={"Country"} disabled="true">
             <Select
               defaultValue={userNationality}
               style={{ width: 120 }}
@@ -43,7 +56,7 @@ function AppHeader() {
               <Option value="GB">GB</Option>
               <Option value="CH">CH</Option>
             </Select>
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item disabled="true">
             <input
               type="text"
