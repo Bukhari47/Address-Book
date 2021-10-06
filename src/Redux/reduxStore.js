@@ -1,7 +1,5 @@
-import { createStore } from "redux";
-import reducer from "../Redux/Reducers/UsersReducer";
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-export default store;
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./reduxStore.prod");
+} else {
+  module.exports = require("./reduxStore.dev");
+}
