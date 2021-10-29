@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Row, Col, Divider, Typography } from "antd";
-import { useLocation } from "react-router";
 
 const { Text, Link } = Typography;
 
 function User() {
-  const location = useLocation();
   const [user, setUser] = useState(location.state.user);
   return (
     <Row>

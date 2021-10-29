@@ -1,6 +1,5 @@
 import * as actionTypes from "./actionTypes";
 import store from "../reduxStore";
-// import fetchUserData from "../Reducers/UsersReducer";
 
 const API = "https://randomuser.me/api";
 
