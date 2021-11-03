@@ -7,6 +7,7 @@ const { Text, Link } = Typography;
 function User() {
   const location = useLocation();
   const [user, setUser] = useState(location.state.user);
+  console.log("This -->", this);
   return (
     <Row>
       <Divider orientation="center">

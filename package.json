@@ -31,11 +31,12 @@
     "reselect": "4.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.14.6",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.16.0",
     "@testing-library/react": "^12.0.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
     "babel-eslint": "10.1.0",
-    "babel-loader": "8.2.2",
+    "babel-loader": "^8.2.2",
     "babel-preset-react-app": "10.0.0",
     "css-loader": "5.2.6",
     "cssnano": "5.0.6",
@@ -59,7 +60,7 @@
     "redux-mock-store": "1.5.4",
     "rimraf": "3.0.2",
     "style-loader": "3.0.0",
-    "webpack": "^5.44.0",
+    "webpack": "^5.61.0",
     "webpack-bundle-analyzer": "4.4.2",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "3.11.2"

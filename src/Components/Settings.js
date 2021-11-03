@@ -9,10 +9,8 @@ const { Option } = Select;
 function Settings() {
   const history = useHistory();
   const nationality = useSelector((state) => state.nationality);
-  // const [userNationality, setUserNationality] = useState("");
 
   function handleChange(value) {
-    // setUserNationality(value);
     getNationality(value);
     history.push("/");
   }
