@@ -18,25 +18,25 @@ const fetchUserData = (state = initialState, action) => {
     case actionTypes.FETCH_MORE_USERS:
       return fetchMoreUsers(state, action);
     case actionTypes.FETCH_MORE_USERS_REQUEST:
-      return fetchMoresrsRequest(state, action);
+      return fetchMoreUsersRequest(state, action);
     case actionTypes.FETCH_MORE_USERS_SUCCESS:
       return fetchMoreUsersSucces(state, action);
     case actionTypes.FETCH_MORE_USERS_FAILURE:
-      return fetchMoresrsFailure(state, action);
+      return fetchMoreUsersFailure(state, action);
     case actionTypes.GET_NATIONALITY:
       return fetchWithNationality(state, action);
-    case actionTypes.FETCH_WITH_NATIONALITY_REQUEST:
-      return fetchUsersWithNationalityRequest(state, action);
-    case actionTypes.FETCH_WITH_NATIONALITY_SUCCESS:
-      return fetchUsersWithNationalitySuccess(state, action);
-    case actionTypes.FETCH_WITH_NATIONALITY_FAILURE:
-      return fetchUsersWithNationalityFailure(state, action);
+    // case actionTypes.FETCH_WITH_NATIONALITY_REQUEST:
+    //   return fetchUsersWithNationalityRequest(state, action);
+    // case actionTypes.FETCH_WITH_NATIONALITY_SUCCESS:
+    //   return fetchUsersWithNationalitySuccess(state, action);
+    // case actionTypes.FETCH_WITH_NATIONALITY_FAILURE:
+    //   return fetchUsersWithNationalityFailure(state, action);
     case actionTypes.FETCH_MORE_WITH_NATIONALITY_REQUEST:
-      return fetchMoresrsWithNationalityRequest(state, action);
+      return fetchMoreUsersWithNationalityRequest(state, action);
     case actionTypes.FETCH_MORE_WITH_NATIONALITY_SUCCESS:
       return fetchMoreUsersWithNationalitySucces(state, action);
     case actionTypes.FETCH_MORE_WITH_NATIONALITY_FAILURE:
-      return fetchMoresrsWithNationalityFailure(state, action);
+      return fetchMoreUsersWithNationalityFailure(state, action);
     case actionTypes.DELETE_USER:
       return deleteUser(state, action);
     case actionTypes.SEARCH_USER:
@@ -92,66 +92,59 @@ const deleteUser = (state, action) => {
 };
 
 const searchUsers = (state, action) => {
+  console.log("Search...!!!", action.search);
   return {
     ...state,
     search: action.search,
   };
 };
 
-const fetchMoresrsRequest = (state) => {
+const fetchMoreUsersRequest = (state) => {
   return {
     ...state,
-    // loading: false,
   };
 };
 const fetchMoreUsersSucces = (state, action) => {
   return {
     ...state,
-    // loading: true,
     users: [...state.users, ...action.payload],
     error: "",
   };
 };
-const fetchMoresrsFailure = (state, action) => {
+const fetchMoreUsersFailure = (state, action) => {
   return { ...state, loading: false, error: action.payload };
 };
 
-const fetchUsersWithNationalityRequest = (state) => {
-  return {
-    ...state,
-    // loading: false,
-  };
-};
-const fetchUsersWithNationalitySuccess = (state, action) => {
-  return {
-    ...state,
-    // loading: true,
-    users: action.payload,
-    error: "",
-  };
-};
-const fetchUsersWithNationalityFailure = (state, action) => {
-  return {
-    ...state,
-    loading: false,
-    error: action.payload,
-  };
-};
-const fetchMoresrsWithNationalityRequest = (state) => {
-  return {
-    ...state,
-    // loading: false,
-  };
+// const fetchUsersWithNationalityRequest = (state) => {
+//   return {
+//     ...state,
+//   };
+// };
+// const fetchUsersWithNationalitySuccess = (state, action) => {
+//   return {
+//     ...state,
+//     users: action.payload,
+//     error: "",
+//   };
+// };
+// const fetchUsersWithNationalityFailure = (state, action) => {
+//   return {
+//     ...state,
+//     loading: false,
+//     error: action.payload,
+//   };
+// };
+const fetchMoreUsersWithNationalityRequest = (state) => {
+  return {};
 };
 const fetchMoreUsersWithNationalitySucces = (state, action) => {
   console.log("Nat Users Reponse", action.payload);
   return {
     ...state,
-    // loading: true,
     users: [...state.users, ...action.payload],
     error: "",
   };
 };
-const fetchMoresrsWithNationalityFailure = (state, action) => {
+const fetchMoreUsersWithNationalityFailure = (state, action) => {
   return { ...state, loading: false, error: action.payload };
 };

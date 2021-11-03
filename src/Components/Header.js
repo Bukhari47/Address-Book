@@ -1,62 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Menu, Select } from "antd";
+import { Layout, Menu } from "antd";
 import { filterUser } from "../Redux/Actions/usersAction";
 import { Link } from "react-router-dom";
-import { getNationality } from "../Redux/Actions/usersAction";
-import {
-  fetchUsersWithNationality,
-  fetchUser,
-} from "../Redux/Actions/usersAction";
+// import { getNationality } from "../Redux/Actions/usersAction";
+// import { fetchUser } from "../Redux/Actions/usersAction";
 import { useSelector } from "react-redux";
-const { Option } = Select;
+// const { Option } = Select;
 const { Header } = Layout;
 function AppHeader() {
   const nationality = useSelector((state) => state.nationality);
-  const [userNationality, setUserNationality] = useState("");
+  // const [userNationality, setUserNationality] = useState("");
 
-  useEffect(() => {
-    if (nationality) {
-      fetchUsersWithNationality(nationality);
-    } else {
-      fetchUser();
-    }
-  }, [nationality]);
+  // useEffect(() => {
+  //   fetchUser();
+  // });  useEffect(() => {
+  // fetchUser();
+  // });
 
-  function handleChange(value) {
-    console.log("<-- Nat -->", value);
-    // Saving User Value
-    setUserNationality(value);
-    // Getting Value From Redux
-    getNationality(value);
-    fetchUsersWithNationality(value);
-    // Redirecting...!!
-
-    console.log("After Redirecting");
-  }
   return (
     <Layout className="layout">
       <Header>
         <div className="logo" />
 
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+        <Menu theme="dark" mode="horizontal">
           <Menu.Item key={"Home"}>
             <Link to="/">Home</Link>
           </Menu.Item>
           <Menu.Item key={"Country"}>
             <Link to="/settings">Settings</Link>
           </Menu.Item>
-          {/* <Menu.Item key={"Country"} disabled="true">
-            <Select
-              defaultValue={userNationality}
-              style={{ width: 120 }}
-              onChange={handleChange}
-            >
-              <Option value="ES">ES</Option>
-              <Option value="FR">FR</Option>
-              <Option value="GB">GB</Option>
-              <Option value="CH">CH</Option>
-            </Select>
-          </Menu.Item> */}
+
           <Menu.Item disabled="true">
             <input
               type="text"

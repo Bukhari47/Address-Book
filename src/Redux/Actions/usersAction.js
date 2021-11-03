@@ -60,44 +60,43 @@ const fetchMoreUsersFailure = (error) => {
   };
 };
 
-const fetchUsersWithNationalityRequest = () => {
-  return {
-    type: actionTypes.FETCH_WITH_NATIONALITY_REQUEST,
-  };
-};
-const fetchUsersWithNationalitySuccess = (users) => {
-  console.log("Nationality -->", users);
-  return {
-    type: actionTypes.FETCH_WITH_NATIONALITY_SUCCESS,
-    payload: users,
-  };
-};
-const fetchUsersWithNationalityFailure = () => {
-  return {
-    type: actionTypes.FETCH_WITH_NATIONALITY_FAILURE,
-  };
-};
-const fetchMoreUsersWithNationalityRequest = () => {
-  return {
-    type: actionTypes.FETCH_MORE_WITH_NATIONALITY_REQUEST,
-  };
-};
-const fetchMoreUsersWithNationalitySuccess = (users) => {
-  console.log("Nationality -->", users);
-  return {
-    type: actionTypes.FETCH_MORE_WITH_NATIONALITY_SUCCESS,
-    payload: users,
-  };
-};
-const fetchMoreUsersWithNationalityFailure = () => {
-  return {
-    type: actionTypes.FETCH_MORE_WITH_NATIONALITY_FAILURE,
-  };
-};
+// const fetchUsersWithNationalityRequest = () => {
+//   return {
+//     type: actionTypes.FETCH_WITH_NATIONALITY_REQUEST,
+//   };
+// };
+// const fetchUsersWithNationalitySuccess = (users) => {
+//   console.log("Nationality -->", users);
+//   return {
+//     type: actionTypes.FETCH_WITH_NATIONALITY_SUCCESS,
+//     payload: users,
+//   };
+// };
+// const fetchUsersWithNationalityFailure = () => {
+//   return {
+//     type: actionTypes.FETCH_WITH_NATIONALITY_FAILURE,
+//   };
+// };
+// const fetchMoreUsersWithNationalityRequest = () => {
+//   return {
+//     type: actionTypes.FETCH_MORE_WITH_NATIONALITY_REQUEST,
+//   };
+// };
+// const fetchMoreUsersWithNationalitySuccess = (users) => {
+//   console.log("Nationality -->", users);
+//   return {
+//     type: actionTypes.FETCH_MORE_WITH_NATIONALITY_SUCCESS,
+//     payload: users,
+//   };
+// };
+// const fetchMoreUsersWithNationalityFailure = () => {
+//   return {
+//     type: actionTypes.FETCH_MORE_WITH_NATIONALITY_FAILURE,
+//   };
+// };
 
-export async function fetchUser(nationality) {
+export async function fetchUser() {
   try {
-    console.log("Fetch Users...", nationality);
     store.dispatch(fetchUsersRequest());
     const response = await fetch(`${API}/?results=50`);
     const UsersDetails = await response.json();
@@ -107,9 +106,8 @@ export async function fetchUser(nationality) {
   }
 }
 
-export async function fetchMoreUsers(nationality) {
+export async function fetchMoreUsers() {
   try {
-    console.log("Nat --", nationality);
     store.dispatch(fetchMoreUsersRequest());
     const response = await fetch(`${API}/?results=50`);
     const UsersDetails = await response.json();
@@ -119,29 +117,29 @@ export async function fetchMoreUsers(nationality) {
   }
 }
 
-export async function fetchUsersWithNationality(nationality) {
-  try {
-    console.log("Fetch Users With...", nationality);
-    store.dispatch(fetchUsersWithNationalityRequest());
-    const response = await fetch(`${API}/?results=50&nat=${nationality}`);
-    const UsersDetails = await response.json();
-    store.dispatch(fetchUsersWithNationalitySuccess(UsersDetails.results));
-  } catch (e) {
-    store.dispatch(fetchUsersWithNationalityFailure(e.message));
-  }
-}
+// export async function fetchUsersWithNationality(nationality) {
+// try {
+// console.log("Fetch Users With...", nationality);
+// store.dispatch(fetchUsersWithNationalityRequest());
+//   const response = await fetch(`${API}/?results=50&nat=${nationality}`);
+//   const UsersDetails = await response.json();
+//   store.dispatch(fetchUsersWithNationalitySuccess(UsersDetails.results));
+// } catch (e) {
+//   store.dispatch(fetchUsersWithNationalityFailure(e.message));
+// }
+// }
 
-export async function fetchMoreUsersWithNationality(nationality) {
-  try {
-    console.log("Nat --", nationality);
-    store.dispatch(fetchMoreUsersWithNationalityRequest());
-    const response = await fetch(`${API}/?results=50&nat=${nationality}`);
-    const UsersDetails = await response.json();
-    store.dispatch(fetchMoreUsersWithNationalitySuccess(UsersDetails.results));
-  } catch (e) {
-    store.dispatch(fetchMoreUsersWithNationalityFailure(e.message));
-  }
-}
+// export async function fetchMoreUsersWithNationality(nationality) {
+//   try {
+//     console.log("Nat --", nationality);
+//     store.dispatch(fetchMoreUsersWithNationalityRequest());
+//     const response = await fetch(`${API}/?results=50&nat=${nationality}`);
+//     const UsersDetails = await response.json();
+//     store.dispatch(fetchMoreUsersWithNationalitySuccess(UsersDetails.results));
+//   } catch (e) {
+//     store.dispatch(fetchMoreUsersWithNationalityFailure(e.message));
+//   }
+// }
 
 export function deleteUserDetials(userID) {
   store.dispatch(deleteUser(userID));
@@ -155,11 +153,11 @@ const userNationality = (nationality) => {
 };
 
 export function getNationality(nationality) {
-  console.log("Getting Nationality ", nationality);
   store.dispatch(userNationality(nationality));
 }
 
 export function filterUser(users) {
-  console.log("--> User Filter ", users);
   store.dispatch(searchUser(users));
 }
+
+fetchUser();

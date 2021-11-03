@@ -1,29 +1,34 @@
 import React, { useState } from "react";
 import { Row, PageHeader, Spin } from "antd";
-import {
-  fetchMoreUsers,
-  fetchMoreUsersWithNationality,
-} from "../Redux/Actions/usersAction";
+import { fetchMoreUsers } from "../Redux/Actions/usersAction";
 import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import UsersCard from "./UsersCard";
 
 export default function HomePage() {
-  const users = useSelector((state) => state.users);
   const loading = useSelector((state) => state.loading);
   const search = useSelector((state) => state.search);
-  const nationality = useSelector((state) => state.nationality);
   const [hasMore, setHasMore] = useState(true);
+  const users = useSelector((state) =>
+    state.users.filter((user) => {
+      if (search === "") {
+        return {
+          user,
+        };
+      } else if (
+        user.name.first.toLowerCase().includes(search.toLowerCase()) ||
+        user.name.last.toLowerCase().includes(search.toLowerCase())
+      ) {
+        return user;
+      } else {
+        return;
+      }
+    })
+  );
 
   const loadMoreUsers = () => {
     if (users.length <= 999) {
-      if (nationality) {
-        console.log("Load More user...", nationality);
-        fetchMoreUsersWithNationality(nationality);
-      } else {
-        console.log("Load More user...");
-        fetchMoreUsers();
-      }
+      fetchMoreUsers();
     } else {
       setHasMore(false);
     }
@@ -48,32 +53,15 @@ export default function HomePage() {
           }
         >
           <Row gutter={16}>
-            {users
-              .filter((user) => {
-                if (search === "") {
-                  return {
-                    user,
-                  };
-                } else if (
-                  user.name.first
-                    .toLowerCase()
-                    .includes(search.toLowerCase()) ||
-                  user.name.last.toLowerCase().includes(search.toLowerCase())
-                ) {
-                  return user;
-                } else {
-                  return;
-                }
-              })
-              .map((user) => {
-                return (
-                  <>
-                    <UsersCard user={user} key={user.login.uuid} />
-                  </>
-                );
-              })}
+            {users.map((user) => {
+              return <UsersCard user={user} key={user.login.uuid} />;
+            })}
           </Row>
-          <b style={{ textAlign: "center" }}>ALL Results Found</b>
+          {users.length ? (
+            <b style={{ textAlign: "center" }}>ALL Results Found</b>
+          ) : (
+            <b style={{ textAlign: "center" }}>No Results Found</b>
+          )}
         </InfiniteScroll>
       ) : (
         <Spin />
