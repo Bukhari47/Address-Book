@@ -96,6 +96,7 @@ const fetchMoreUsersFailure = (error) => {
 // };
 
 export async function fetchUser() {
+  console.log("Fetch User...");
   try {
     store.dispatch(fetchUsersRequest());
     const response = await fetch(`${API}/?results=50`);
