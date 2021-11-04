@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Divider, Select } from "antd";
-import { getNationality } from "../Redux/Actions/usersAction";
+import { getNationality } from "../redux/actions/usersAction";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 // import { fetchUsersWithNationality } from "../Redux/Actions/usersAction";

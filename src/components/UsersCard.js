@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Card, Avatar } from "antd";
 import { MoreOutlined, DeleteOutlined } from "@ant-design/icons";
-import { deleteUserDetials } from "../Redux/Actions/usersAction";
+import { deleteUserDetials } from "../redux/actions/usersAction";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const { Meta } = Card;

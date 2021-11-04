@@ -1,13 +1,13 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { Layout } from "antd";
-import AppHeader from "./Components/Header";
-import HomePage from "./Components/HomePage";
-import Settings from "./Components/Settings";
+import AppHeader from "./components/Header";
+import HomePage from "./components/HomePage";
+import Settings from "./components/Settings";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import User from "./Components/User";
-import Page404Error from "./Components/Page404Error";
+import User from "./components/User";
+import Page404Error from "./components/Page404Error";
 
 const { Header } = Layout;
 

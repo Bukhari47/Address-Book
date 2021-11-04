@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Row, PageHeader, Spin } from "antd";
-import { fetchMoreUsers } from "../Redux/Actions/usersAction";
+import { fetchMoreUsers } from "../redux/actions/usersAction";
 import { useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import UsersCard from "./UsersCard";

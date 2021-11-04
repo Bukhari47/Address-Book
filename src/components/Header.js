@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Menu } from "antd";
-import { filterUser } from "../Redux/Actions/usersAction";
+import { filterUser } from "../redux/actions/usersAction";
 import { Link } from "react-router-dom";
 // import { getNationality } from "../Redux/Actions/usersAction";
 // import { fetchUser } from "../Redux/Actions/usersAction";
