@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import { Row, Col, Divider, Typography } from "antd";
 import { useLocation } from "react-router-dom";
-import { connect } from "react-redux";
-import userSelector from "../selectors/userSelector";
+
 const { Text, Link } = Typography;
 
-function User(props) {
+function User() {
   const location = useLocation();
   const [user, setUser] = useState(location.state.user);
-  // console.log(
-  //   props.allusers.map((user) => {
-  //     user.login.uuid;
-  //   })
-  // );
+  console.log("This -->", this);
   return (
     <Row>
       <Divider orientation="center">
@@ -54,6 +49,7 @@ function User(props) {
               <Text strong>Phone : </Text>
               <code>{user.phone}</code>
             </Col>
+            {/*  Column 2 */}
             <Col span={12} style={{ textAlign: "left" }}>
               <Text strong>Address : </Text>
               <code>
@@ -81,11 +77,4 @@ function User(props) {
   );
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     allusers: userSelector(state),
-//   };
-// };
-
 export default User;
-// connect(mapStateToProps, null)
