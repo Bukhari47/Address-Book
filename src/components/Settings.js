@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Divider, Select } from "antd";
 import { getNationality } from "../redux/actions/usersAction";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { fetchUsersWithNationality } from "../Redux/Actions/usersAction";
 const { Option } = Select;
 
 function Settings() {

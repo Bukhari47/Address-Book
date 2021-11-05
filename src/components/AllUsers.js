@@ -2,29 +2,34 @@ import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import UsersCard from "./UsersCard";
 import { fetchMoreUsers } from "../redux/actions/usersAction";
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Row, Spin } from "antd";
 
-export default function AllUsers() {
-  const search = useSelector((state) => state.search);
+import { usersNat, filteredUserWithNat } from "../selectors/natSelector";
+
+function AllUsers(props) {
   const nationality = useSelector((state) => state.nationality);
+  const users = nationality ? props.natUsers : props.allUsers;
+  // console.log("all Users", allUsers, props.natUsers);
+  const search = useSelector((state) => state.search);
   const [hasMore, setHasMore] = useState(true);
-  const users = useSelector((state) =>
-    state.users.filter((user) => {
-      if (search === "") {
-        return {
-          user,
-        };
-      } else if (
-        user.name.first.toLowerCase().includes(search.toLowerCase()) ||
-        user.name.last.toLowerCase().includes(search.toLowerCase())
-      ) {
-        return user;
-      } else {
-        return;
-      }
-    })
-  );
+
+  // const users = useSelector((state) =>
+  //   state.users.filter((user) => {
+  //     if (search === "") {
+  //       return {
+  //         user,
+  //       };
+  //     } else if (
+  //       user.name.first.toLowerCase().includes(search.toLowerCase()) ||
+  //       user.name.last.toLowerCase().includes(search.toLowerCase())
+  //     ) {
+  //       return user;
+  //     } else {
+  //       return;
+  //     }
+  //   })
+  // );
   const scrollEndMessage = search
     ? "No More Results Found According to this name"
     : nationality
@@ -46,7 +51,6 @@ export default function AllUsers() {
       );
     }
   };
-  console.log("ALL Users Page...");
   return (
     <InfiniteScroll
       dataLength={users.length}
@@ -72,3 +76,20 @@ export default function AllUsers() {
     </InfiniteScroll>
   );
 }
+
+function mapStateToProps(state) {
+  // console.log("State Nat -->" + state.nationality);
+  // const natUserSelector = (state) => {
+  //   return usersNat(state).map((user) => {
+  //     return user.nat === state.nationality;
+  //   });
+  // };
+
+  // console.log("object -->", natUserSelector(state));
+
+  return {
+    allUsers: usersNat(state),
+    natUsers: filteredUserWithNat(state),
+  };
+}
+export default connect(mapStateToProps)(AllUsers);

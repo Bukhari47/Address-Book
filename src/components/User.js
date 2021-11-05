@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { usersList, filteredSingleUser } from "../selectors/userSelector";
-import { Row, Col, Divider, Typography } from "antd";
 import { getUserId } from "../redux/actions/usersAction";
+import { usersList, filteredSingleUser } from "../selectors/userSelector";
+
+import { Row, Col, Divider, Typography } from "antd";
 const { Text, Link } = Typography;
+
 const selectedUser = (props) => {
-  getUserId(props.match.params.userId);
+  const userId = props.match.params.userId;
+  getUserId(userId);
   const user = props.singleUser;
-  console.log(
-    "User Details",
-    user.map((user) => user.login.uuid)
-  );
+  // useEffect(() => {
+  //   console.log("Empty", user);
+  //   if (user.length === 0) {
+  //     window.location.replace("http://localhost:3000/");
+  //   }
+  // }, [user]);
   return (
     <Row>
       <Divider orientation="center">
@@ -91,8 +96,6 @@ const selectedUser = (props) => {
 };
 
 function mapStateToProps(state) {
-  const user = filteredSingleUser(state);
-  console.log(user);
   return {
     users: usersList(state),
     singleUser: filteredSingleUser(state),
