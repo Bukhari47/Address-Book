@@ -26,7 +26,6 @@ function UsersCard({ user }) {
                 key={user.login.uuid}
                 to={{
                   pathname: "user/" + user.login.uuid,
-                  state: { user },
                 }}
               >
                 {" "}

@@ -5,6 +5,7 @@ const initialState = {
   error: "",
   nationality: "",
   search: "",
+  userId: "",
 };
 
 const fetchUserData = (state = initialState, action) => {
@@ -25,22 +26,25 @@ const fetchUserData = (state = initialState, action) => {
       return fetchMoreUsersFailure(state, action);
     case actionTypes.GET_NATIONALITY:
       return fetchWithNationality(state, action);
+    case actionTypes.DELETE_USER:
+      return deleteUser(state, action);
+    case actionTypes.SEARCH_USER:
+      return searchUsers(state, action);
+    case actionTypes.SINGLE_USER_PAGE:
+      return singleUserPage(state, action);
     // case actionTypes.FETCH_WITH_NATIONALITY_REQUEST:
     //   return fetchUsersWithNationalityRequest(state, action);
     // case actionTypes.FETCH_WITH_NATIONALITY_SUCCESS:
     //   return fetchUsersWithNationalitySuccess(state, action);
     // case actionTypes.FETCH_WITH_NATIONALITY_FAILURE:
     //   return fetchUsersWithNationalityFailure(state, action);
-    case actionTypes.FETCH_MORE_WITH_NATIONALITY_REQUEST:
-      return fetchMoreUsersWithNationalityRequest(state, action);
-    case actionTypes.FETCH_MORE_WITH_NATIONALITY_SUCCESS:
-      return fetchMoreUsersWithNationalitySucces(state, action);
-    case actionTypes.FETCH_MORE_WITH_NATIONALITY_FAILURE:
-      return fetchMoreUsersWithNationalityFailure(state, action);
-    case actionTypes.DELETE_USER:
-      return deleteUser(state, action);
-    case actionTypes.SEARCH_USER:
-      return searchUsers(state, action);
+    // case actionTypes.FETCH_MORE_WITH_NATIONALITY_REQUEST:
+    //   return fetchMoreUsersWithNationalityRequest(state, action);
+    // case actionTypes.FETCH_MORE_WITH_NATIONALITY_SUCCESS:
+    //   return fetchMoreUsersWithNationalitySucces(state, action);
+    // case actionTypes.FETCH_MORE_WITH_NATIONALITY_FAILURE:
+    //   return fetchMoreUsersWithNationalityFailure(state, action);
+
     default:
       return state;
   }
@@ -115,6 +119,14 @@ const fetchMoreUsersFailure = (state, action) => {
   return { ...state, loading: false, error: action.payload };
 };
 
+const singleUserPage = (state, action) => {
+  // console.log("Users Reducer ", state, action.payload);
+  return {
+    ...state,
+    userId: action.payload,
+  };
+};
+
 // const fetchUsersWithNationalityRequest = (state) => {
 //   return {
 //     ...state,
@@ -134,17 +146,17 @@ const fetchMoreUsersFailure = (state, action) => {
 //     error: action.payload,
 //   };
 // };
-const fetchMoreUsersWithNationalityRequest = (state) => {
-  return {};
-};
-const fetchMoreUsersWithNationalitySucces = (state, action) => {
-  console.log("Nat Users Reponse", action.payload);
-  return {
-    ...state,
-    users: [...state.users, ...action.payload],
-    error: "",
-  };
-};
-const fetchMoreUsersWithNationalityFailure = (state, action) => {
-  return { ...state, loading: false, error: action.payload };
-};
+// const fetchMoreUsersWithNationalityRequest = (state) => {
+//   return {};
+// };
+// const fetchMoreUsersWithNationalitySucces = (state, action) => {
+//   console.log("Nat Users Reponse", action.payload);
+//   return {
+//     ...state,
+//     users: [...state.users, ...action.payload],
+//     error: "",
+//   };
+// };
+// const fetchMoreUsersWithNationalityFailure = (state, action) => {
+//   return { ...state, loading: false, error: action.payload };
+// };

@@ -1,15 +1,21 @@
-import _ from "lodash";
 import { createSelector } from "reselect";
-import { useLocation } from "react-router";
 
-const allUser = (state) => state.users;
-const singleUser = (state) => state.singleUser;
-
-const filteredUser = (allUser, singleUser) => {
-  const selectedUser = _.map(allUser, (user) =>
-    _.filter(singleUser === user.login.uuid)
-  );
-  return selectedUser;
+export const usersList = (state) => {
+  // console.log("Users List...-->", state.users);
+  return state.users;
 };
+// export const singleUserSelector = (state, props) => {
+//   return usersList(state).filter((user) => {
+//     return props.match.params.userId === user.login.uuid;
+//   });
+// };
 
-export default createSelector(allUser, singleUser, filteredUser);
+export const filteredSingleUser = createSelector(
+  (state) => state.users,
+  (state) => state.userId,
+  (users, userId) => {
+    return users.filter((user) => {
+      return userId === user.login.uuid;
+    });
+  }
+);

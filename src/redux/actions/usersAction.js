@@ -96,7 +96,6 @@ const fetchMoreUsersFailure = (error) => {
 // };
 
 export async function fetchUser() {
-  console.log("Fetch User...");
   try {
     store.dispatch(fetchUsersRequest());
     const response = await fetch(`${API}/?results=50`);
@@ -150,6 +149,18 @@ const userNationality = (nationality) => {
   return {
     type: actionTypes.GET_NATIONALITY,
     payload: nationality,
+  };
+};
+
+export function getUserId(UUID) {
+  // console.log("State and Actions... ", userId);
+  store.dispatch(userId(UUID));
+}
+
+const userId = (UUID) => {
+  return {
+    type: actionTypes.SINGLE_USER_PAGE,
+    payload: UUID,
   };
 };
 

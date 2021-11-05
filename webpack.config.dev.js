@@ -33,15 +33,10 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          use: [
-            {
-              loader: "babel-loader",
-              options: {
-                presets: ["@babel/preset-env"],
-              },
-            },
-            "eslint-loader",
-          ],
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
         },
       },
       {
