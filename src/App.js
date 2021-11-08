@@ -3,12 +3,12 @@ import "antd/dist/antd.css";
 import { Layout } from "antd";
 
 import AppHeader from "./components/Header";
-import HomePage from "./components/HomePage";
-import Settings from "./components/Settings";
+import HomePage from "./containers/HomePage";
+import Settings from "./containers/Settings";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import User from "./components/User";
-import Page404Error from "./components/Page404Error";
+import User from "./containers/User";
+import Page404Error from "./containers/Page404Error";
 
 const { Header, Content, Footer } = Layout;
 
