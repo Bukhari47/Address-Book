@@ -2,8 +2,11 @@ import React from "react";
 import { Layout, Menu } from "antd";
 import { filterUser } from "../redux/actions/usersAction";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const { Header } = Layout;
 function AppHeader() {
+  const search = useSelector((state) => state.search);
+
   return (
     <Header>
       <div className="logo" />
@@ -19,6 +22,7 @@ function AppHeader() {
         <Menu.Item key={"Seacrh"} disabled="true">
           <input
             type="text"
+            value={search}
             placeholder="Search"
             style={{
               height: "40px",

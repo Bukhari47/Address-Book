@@ -30,7 +30,7 @@ const deleteUser = (userID) => {
 };
 
 const searchUser = (username) => {
-  console.log("--> Users Action", username);
+  // console.log("--> Users Action", username);
   return {
     type: actionTypes.SEARCH_USER,
     search: username,
@@ -38,14 +38,14 @@ const searchUser = (username) => {
 };
 
 const fetchMoreUsersRequest = () => {
-  console.log("More Users Request");
+  // console.log("More Users Request");
   return {
     type: actionTypes.FETCH_MORE_USERS_REQUEST,
   };
 };
 
 const fetchMoreUsersSuccess = (users) => {
-  console.log("More Users Success", users);
+  // console.log("More Users Success", users);
   return {
     type: actionTypes.FETCH_MORE_USERS_SUCCESS,
     payload: users,
@@ -53,7 +53,7 @@ const fetchMoreUsersSuccess = (users) => {
 };
 
 const fetchMoreUsersFailure = (error) => {
-  console.log("More Users");
+  // console.log("More Users");
   return {
     type: actionTypes.FETCH_MORE_USERS_FAILURE,
     payload: error,
@@ -169,6 +169,7 @@ export function getNationality(nationality) {
 }
 
 export function filterUser(users) {
+  console.log("Seacrh", users);
   store.dispatch(searchUser(users));
 }
 

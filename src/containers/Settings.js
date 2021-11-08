@@ -1,6 +1,6 @@
 import React from "react";
 import { Divider, Select } from "antd";
-import { getNationality } from "../redux/actions/usersAction";
+import { filterUser, getNationality } from "../redux/actions/usersAction";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 const { Option } = Select;
@@ -11,6 +11,7 @@ function Settings() {
 
   function handleChange(value) {
     getNationality(value);
+    filterUser("");
     history.push("/");
   }
 

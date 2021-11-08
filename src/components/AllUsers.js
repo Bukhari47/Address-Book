@@ -1,32 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import UsersCard from "./UsersCard";
+import UserCard from "./UserCard";
 import { fetchMoreUsers } from "../redux/actions/usersAction";
-import { connect, useSelector } from "react-redux";
-import { Row, Spin } from "antd";
+import { useSelector } from "react-redux";
+import { Typography, Row, Spin } from "antd";
+const { Text } = Typography;
 
-import { usersNat, filteredUserWithNat } from "../selectors/natSelector";
-import { usersName, filteredUserWithName } from "../selectors/nameSelector";
+import {
+  // usersNat,
+  filteredUserWithNat,
+  filteredUserWithName,
+  filteringUserWithNameInNat,
+} from "../selectors/filteringUser";
 
-function AllUsers(props) {
+function AllUsers() {
   const nationality = useSelector((state) => state.nationality);
+  const users = useSelector((state) => state.users);
   const search = useSelector((state) => state.search);
-
-  const users = nationality
-    ? props.natUsers
-    : props.natUsersList
-    ? props.nameFiltered
-    : props.usersNameList;
+  // const usersList = useSelector((state) => usersNat(state));
+  const natUsers = useSelector((state) => filteredUserWithNat(state));
+  const nameFilter = useSelector((state) => filteredUserWithName(state));
+  const natAndName = useSelector((state) => filteringUserWithNameInNat(state));
+  const [usersState, setUsersState] = useState({
+    users: [],
+    scrollEndMessage: "You have seen all users.",
+  });
   const [hasMore, setHasMore] = useState(true);
 
-  const scrollEndMessage = search
-    ? "No More Results Found According to this name"
-    : nationality
-    ? `No more users from ${nationality} nationality`
-    : "You have seen all users.";
+  useEffect(() => {
+    if (search !== "" && nationality !== "") {
+      const users = natAndName;
+      setUsersState({
+        users: natAndName,
+        scrollEndMessage: `No More Results Found According to the following keywords in following ${nationality} `,
+      });
+      return users;
+    } else if (search !== "") {
+      setUsersState({
+        users: nameFilter,
+        scrollEndMessage: `No more users found according to the following keywords`,
+      });
+    } else if (nationality !== "") {
+      setUsersState({
+        users: natUsers,
+        scrollEndMessage: `No more users from ${nationality} nationality`,
+      });
+    } else {
+      setUsersState({
+        users: users,
+        scrollEndMessage: "You have seen all users.",
+      });
+    }
+  }, [nationality, search, users]);
 
   const loadMoreUsers = () => {
-    if (users.length <= 999) {
+    if (usersState.users.length <= 999) {
       fetchMoreUsers();
     } else {
       setHasMore(false);
@@ -38,32 +66,20 @@ function AllUsers(props) {
       hasMore={search ? false : nationality ? false : hasMore}
       style={{ overflow: "none" }}
       next={loadMoreUsers}
-      loader={
-        <p style={{ textAlign: "center" }}>
-          <Spin />
-        </p>
-      }
+      loader={<Spin />}
       endMessage={
-        <p style={{ textAlign: "center" }}>
-          <b>{scrollEndMessage}</b>
-        </p>
+        <Text strong style={{ textAlign: "center" }}>
+          {usersState.scrollEndMessage}
+        </Text>
       }
     >
       <Row gutter={16}>
-        {users.map((user) => {
-          return <UsersCard user={user} key={user.login.uuid} />;
+        {usersState.users.map((user) => {
+          return <UserCard user={user} key={user.login.uuid} />;
         })}
       </Row>
     </InfiniteScroll>
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    natUsersList: usersNat(state),
-    natUsers: filteredUserWithNat(state),
-    usersNameList: usersName(state),
-    nameFiltered: filteredUserWithName(state),
-  };
-}
-export default connect(mapStateToProps)(AllUsers);
+export default AllUsers;
