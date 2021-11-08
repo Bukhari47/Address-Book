@@ -30,7 +30,6 @@ const deleteUser = (userID) => {
 };
 
 const searchUser = (username) => {
-  // console.log("--> Users Action", username);
   return {
     type: actionTypes.SEARCH_USER,
     search: username,
@@ -38,14 +37,12 @@ const searchUser = (username) => {
 };
 
 const fetchMoreUsersRequest = () => {
-  // console.log("More Users Request");
   return {
     type: actionTypes.FETCH_MORE_USERS_REQUEST,
   };
 };
 
 const fetchMoreUsersSuccess = (users) => {
-  // console.log("More Users Success", users);
   return {
     type: actionTypes.FETCH_MORE_USERS_SUCCESS,
     payload: users,
@@ -53,47 +50,11 @@ const fetchMoreUsersSuccess = (users) => {
 };
 
 const fetchMoreUsersFailure = (error) => {
-  // console.log("More Users");
   return {
     type: actionTypes.FETCH_MORE_USERS_FAILURE,
     payload: error,
   };
 };
-
-// const fetchUsersWithNationalityRequest = () => {
-//   return {
-//     type: actionTypes.FETCH_WITH_NATIONALITY_REQUEST,
-//   };
-// };
-// const fetchUsersWithNationalitySuccess = (users) => {
-//   console.log("Nationality -->", users);
-//   return {
-//     type: actionTypes.FETCH_WITH_NATIONALITY_SUCCESS,
-//     payload: users,
-//   };
-// };
-// const fetchUsersWithNationalityFailure = () => {
-//   return {
-//     type: actionTypes.FETCH_WITH_NATIONALITY_FAILURE,
-//   };
-// };
-// const fetchMoreUsersWithNationalityRequest = () => {
-//   return {
-//     type: actionTypes.FETCH_MORE_WITH_NATIONALITY_REQUEST,
-//   };
-// };
-// const fetchMoreUsersWithNationalitySuccess = (users) => {
-//   console.log("Nationality -->", users);
-//   return {
-//     type: actionTypes.FETCH_MORE_WITH_NATIONALITY_SUCCESS,
-//     payload: users,
-//   };
-// };
-// const fetchMoreUsersWithNationalityFailure = () => {
-//   return {
-//     type: actionTypes.FETCH_MORE_WITH_NATIONALITY_FAILURE,
-//   };
-// };
 
 export async function fetchUser() {
   try {
@@ -117,30 +78,6 @@ export async function fetchMoreUsers() {
   }
 }
 
-// export async function fetchUsersWithNationality(nationality) {
-// try {
-// console.log("Fetch Users With...", nationality);
-// store.dispatch(fetchUsersWithNationalityRequest());
-//   const response = await fetch(`${API}/?results=50&nat=${nationality}`);
-//   const UsersDetails = await response.json();
-//   store.dispatch(fetchUsersWithNationalitySuccess(UsersDetails.results));
-// } catch (e) {
-//   store.dispatch(fetchUsersWithNationalityFailure(e.message));
-// }
-// }
-
-// export async function fetchMoreUsersWithNationality(nationality) {
-//   try {
-//     console.log("Nat --", nationality);
-//     store.dispatch(fetchMoreUsersWithNationalityRequest());
-//     const response = await fetch(`${API}/?results=50&nat=${nationality}`);
-//     const UsersDetails = await response.json();
-//     store.dispatch(fetchMoreUsersWithNationalitySuccess(UsersDetails.results));
-//   } catch (e) {
-//     store.dispatch(fetchMoreUsersWithNationalityFailure(e.message));
-//   }
-// }
-
 export function deleteUserDetials(userID) {
   store.dispatch(deleteUser(userID));
 }
@@ -153,7 +90,6 @@ const userNationality = (nationality) => {
 };
 
 export function getUserId(UUID) {
-  // console.log("State and Actions... ", userId);
   store.dispatch(userId(UUID));
 }
 

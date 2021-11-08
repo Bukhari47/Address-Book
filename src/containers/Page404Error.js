@@ -1,8 +1,15 @@
 import React from "react";
+import { Typography, Row, Col } from "antd";
+
+const { Text } = Typography;
 
 function Page404Error() {
   return (
-    <div style={{ textAlign: "center" }}>Opps...!!! Page not found...!!!</div>
+    <Row>
+      <Col>
+        <Text strong>Opps...!!! Page not found...!!!</Text>
+      </Col>
+    </Row>
   );
 }
 

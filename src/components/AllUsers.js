@@ -7,7 +7,6 @@ import { Typography, Row, Spin } from "antd";
 const { Text } = Typography;
 
 import {
-  // usersNat,
   filteredUserWithNat,
   filteredUserWithName,
   filteringUserWithNameInNat,
@@ -17,7 +16,6 @@ function AllUsers() {
   const nationality = useSelector((state) => state.nationality);
   const users = useSelector((state) => state.users);
   const search = useSelector((state) => state.search);
-  // const usersList = useSelector((state) => usersNat(state));
   const natUsers = useSelector((state) => filteredUserWithNat(state));
   const nameFilter = useSelector((state) => filteredUserWithName(state));
   const natAndName = useSelector((state) => filteringUserWithNameInNat(state));
@@ -26,7 +24,6 @@ function AllUsers() {
     scrollEndMessage: "You have seen all users.",
   });
   const [hasMore, setHasMore] = useState(true);
-
   useEffect(() => {
     if (search !== "" && nationality !== "") {
       const users = natAndName;
@@ -73,7 +70,7 @@ function AllUsers() {
         </Text>
       }
     >
-      <Row gutter={16}>
+      <Row gutter={[48, 8]}>
         {usersState.users.map((user) => {
           return <UserCard user={user} key={user.login.uuid} />;
         })}

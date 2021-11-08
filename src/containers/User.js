@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { getUserId } from "../redux/actions/usersAction";
-import { usersList, filteredSingleUser } from "../selectors/userSelector";
+import { filteredSingleUser } from "../selectors/userSelector";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { Row, Col, Divider, Typography } from "antd";
-const { Text, Link } = Typography;
+const { Text, Link, Title } = Typography;
 
 const selectedUser = (props) => {
-  const users = useSelector((state) => usersList(state));
+  const users = useSelector((state) => state.users);
   const singleUser = useSelector((state) => filteredSingleUser(state));
   let history = useHistory();
   const userId = props.match.params.userId;
@@ -21,7 +21,7 @@ const selectedUser = (props) => {
   return (
     <Row>
       <Divider orientation="center">
-        <h1>User Details</h1>
+        <Title>User Details</Title>
       </Divider>
       <Col span={4}></Col>
       <Col span={16}>
