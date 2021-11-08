@@ -17,27 +17,8 @@ function AllUsers(props) {
     : props.natUsersList
     ? props.nameFiltered
     : props.usersNameList;
-  // const userNames = search ? props.nameFiltered : props.usersNameList;
-  // console.log("Users with follwing names -->", userNames);
-  // console.log("all Users", props);
   const [hasMore, setHasMore] = useState(true);
 
-  // const users = useSelector((state) =>
-  //   state.users.filter((user) => {
-  //     if (search === "") {
-  //       return {
-  //         user,
-  //       };
-  //     } else if (
-  //       user.name.first.toLowerCase().includes(search.toLowerCase()) ||
-  //       user.name.last.toLowerCase().includes(search.toLowerCase())
-  //     ) {
-  //       return user;
-  //     } else {
-  //       return;
-  //     }
-  //   })
-  // );
   const scrollEndMessage = search
     ? "No More Results Found According to this name"
     : nationality
@@ -47,16 +28,8 @@ function AllUsers(props) {
   const loadMoreUsers = () => {
     if (users.length <= 999) {
       fetchMoreUsers();
-      console.log(
-        "Fetching Users <-- Scroll End Message -->",
-        scrollEndMessage
-      );
     } else {
       setHasMore(false);
-      console.log(
-        "Has More False <-- Scroll End Message -->",
-        scrollEndMessage
-      );
     }
   };
   return (
@@ -86,15 +59,6 @@ function AllUsers(props) {
 }
 
 function mapStateToProps(state) {
-  // console.log("State Nat -->" + state.nationality);
-  // const natUserSelector = (state) => {
-  //   return usersNat(state).map((user) => {
-  //     return user.nat === state.nationality;
-  //   });
-  // };
-
-  // console.log("object -->", natUserSelector(state));
-
   return {
     natUsersList: usersNat(state),
     natUsers: filteredUserWithNat(state),

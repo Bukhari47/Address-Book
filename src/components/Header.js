@@ -2,20 +2,8 @@ import React from "react";
 import { Layout, Menu } from "antd";
 import { filterUser } from "../redux/actions/usersAction";
 import { Link } from "react-router-dom";
-// import { getNationality } from "../Redux/Actions/usersAction";
-// import { fetchUser } from "../redux/actions/usersAction";
-// import { connect } from "react-redux";
-// const { Option } = Select;
 const { Header } = Layout;
 function AppHeader() {
-  // useEffect(() => {
-  //   fetchUser();
-  // });  useEffect(() => {
-  // fetchUser();
-  // });
-
-  // console.log("Fetch User....", fetchUser);
-
   return (
     <Header>
       <div className="logo" />
@@ -48,9 +36,4 @@ function AppHeader() {
     </Header>
   );
 }
-
-// const mapDispatchToProps = {
-//   fetchUser,
-// };
-// connect(null, mapDispatchToProps);
 export default AppHeader;

@@ -2,20 +2,22 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getUserId } from "../redux/actions/usersAction";
 import { usersList, filteredSingleUser } from "../selectors/userSelector";
+import { useHistory } from "react-router-dom";
 
 import { Row, Col, Divider, Typography } from "antd";
 const { Text, Link } = Typography;
 
 const selectedUser = (props) => {
+  let history = useHistory();
   const userId = props.match.params.userId;
   getUserId(userId);
+  console.log("props", props.users);
+  useEffect(() => {
+    if (props.users.length === 0) {
+      history.push("/");
+    }
+  });
   const user = props.singleUser;
-  // useEffect(() => {
-  //   console.log("Empty", user);
-  //   if (user.length === 0) {
-  //     window.location.replace("http://localhost:3000/");
-  //   }
-  // }, [user]);
   return (
     <Row>
       <Divider orientation="center">
