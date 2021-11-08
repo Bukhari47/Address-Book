@@ -6,12 +6,20 @@ import { connect, useSelector } from "react-redux";
 import { Row, Spin } from "antd";
 
 import { usersNat, filteredUserWithNat } from "../selectors/natSelector";
+import { usersName, filteredUserWithName } from "../selectors/nameSelector";
 
 function AllUsers(props) {
   const nationality = useSelector((state) => state.nationality);
-  const users = nationality ? props.natUsers : props.allUsers;
-  // console.log("all Users", allUsers, props.natUsers);
   const search = useSelector((state) => state.search);
+
+  const users = nationality
+    ? props.natUsers
+    : props.natUsersList
+    ? props.nameFiltered
+    : props.usersNameList;
+  // const userNames = search ? props.nameFiltered : props.usersNameList;
+  // console.log("Users with follwing names -->", userNames);
+  // console.log("all Users", props);
   const [hasMore, setHasMore] = useState(true);
 
   // const users = useSelector((state) =>
@@ -88,8 +96,10 @@ function mapStateToProps(state) {
   // console.log("object -->", natUserSelector(state));
 
   return {
-    allUsers: usersNat(state),
+    natUsersList: usersNat(state),
     natUsers: filteredUserWithNat(state),
+    usersNameList: usersName(state),
+    nameFiltered: filteredUserWithName(state),
   };
 }
 export default connect(mapStateToProps)(AllUsers);
