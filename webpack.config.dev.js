@@ -17,6 +17,7 @@ module.exports = {
   devServer: {
     stats: "minimal",
     overlay: true,
+    open: true,
     historyApiFallback: true,
     disableHostCheck: true,
     headers: { "Access-Control-Allow-Origin": "*" },
@@ -24,6 +25,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: "Address Book",
       template: "src/index.html",
     }),
   ],
