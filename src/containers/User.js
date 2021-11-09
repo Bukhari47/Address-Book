@@ -1,28 +1,28 @@
 import React, { useEffect } from "react";
 import { getUserId } from "../redux/actions/usersAction";
 import { filteredSingleUser } from "../selectors/userSelector";
-import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
-import { Row, Col, Divider, Typography } from "antd";
-import ErrorBoundary from "../components/ErrorBoundary";
+import { Row, Col, Divider, Typography, Image } from "antd";
+// import ErrorBoundary from "../components/ErrorBoundary";
 const { Text, Link, Title } = Typography;
 
 const selectedUser = (props) => {
+  const history = useHistory();
   const users = useSelector((state) => state.users);
   const singleUser = useSelector((state) => filteredSingleUser(state));
-  let history = useHistory();
   const userId = props.match.params.userId;
   getUserId(userId);
-  // useEffect(() => {
-  //   if (users.length === 0) {
-  //     history.push("/");
-  //   }
-  // });
+  useEffect(() => {
+    if (users.length === 0) {
+      history.push("/");
+    }
+  });
   return (
     <Row>
-      <Divider orientation="center">
-        <Title>User Details</Title>
+      <Divider>
+        <Title level={2}>User Details</Title>
       </Divider>
       <Col span={4}></Col>
       <Col span={16}>
@@ -31,62 +31,64 @@ const selectedUser = (props) => {
             <>
               {" "}
               <div style={{ textAlign: "center" }}>
-                <img
+                <Image
                   src={singleUser.picture.large}
                   alt={singleUser.picture.large}
                   style={{ borderRadius: "50%" }}
                 />
-                <h1>
-                  {singleUser.name.title +
-                    " " +
-                    singleUser.name.first +
-                    " " +
-                    singleUser.name.last}
-                </h1>
+                <Divider>
+                  <Title level={2}>
+                    {singleUser.name.title +
+                      " " +
+                      singleUser.name.first +
+                      " " +
+                      singleUser.name.last}
+                  </Title>
+                </Divider>
                 <Row>
                   <Col span={12} style={{ textAlign: "left" }}>
                     <Text strong>Username : </Text>
-                    <code>{singleUser.login.username}</code>
-                    <br />
+                    <Text italic>{singleUser.login.username}</Text>
+                    <Divider />
                     <Text strong>Date Of Birth : </Text>
-                    <code>{singleUser.dob.date}</code>
-                    <br />
+                    <Text italic>{singleUser.dob.date}</Text>
+                    <Divider />
                     <Text strong>Current Age : </Text>
-                    <code>{singleUser.dob.age}</code>
-                    <br />
+                    <Text italic>{singleUser.dob.age}</Text>
+                    <Divider />
                     <Text strong>Gender : </Text>
-                    <code>{singleUser.gender}</code>
-                    <br />
+                    <Text italic>{singleUser.gender}</Text>
+                    <Divider />
 
                     <Text strong>Email : </Text>
 
                     <Link target="_blank">{singleUser.email}</Link>
-                    <br />
+                    <Divider />
                     <Text strong>Cell : </Text>
-                    <code>{singleUser.cell}</code>
-                    <br />
-                    <Text strong>Phone : </Text>
-                    <code>{singleUser.phone}</code>
+                    <Text italic>{singleUser.cell}</Text>
                   </Col>
                   <Col span={12} style={{ textAlign: "left" }}>
                     <Text strong>Address : </Text>
-                    <code>
+                    <Text italic>
                       Street NO# {singleUser.location.street.number}{" "}
                       {singleUser.location.street.name},
                       {singleUser.location.city}
-                    </code>
-                    <br />
+                    </Text>
+                    <Divider />
                     <Text strong>City : </Text>
-                    <code>{singleUser.location.city}</code>
-                    <br />
+                    <Text italic>{singleUser.location.city}</Text>
+                    <Divider />
                     <Text strong>State : </Text>
-                    <code>{singleUser.location.state}</code>
-                    <br />
+                    <Text italic>{singleUser.location.state}</Text>
+                    <Divider />
                     <Text strong>Country : </Text>
-                    <code>{singleUser.location.country}</code>
-                    <br />
+                    <Text italic>{singleUser.location.country}</Text>
+                    <Divider />
                     <Text strong>Nationality : </Text>
-                    <code>{singleUser.nat}</code>.
+                    <Text italic>{singleUser.nat}</Text>.
+                    <Divider />
+                    <Text strong>Phone : </Text>
+                    <Text italic>{singleUser.phone}</Text>
                   </Col>
                 </Row>
               </div>
