@@ -20,7 +20,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html",
-      // favicon: "src/favicon.ico"
       minify: {
         removeComments: true,
         collapseWhitespace: true,
