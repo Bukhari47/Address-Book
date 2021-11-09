@@ -4,7 +4,7 @@ import { filterUser, getNationality } from "../redux/actions/usersAction";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 const { Option } = Select;
-const { Text, Title } = Typography;
+const { Title } = Typography;
 function Settings() {
   const history = useHistory();
   const nationality = useSelector((state) => state.nationality);

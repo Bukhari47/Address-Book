@@ -1,15 +1,15 @@
+// import "antd/dist/antd.css";
 import React from "react";
-import "antd/dist/antd.css";
-import { Layout } from "antd";
 
 import AppHeader from "./components/Header";
 import HomePage from "./containers/HomePage";
 import Settings from "./containers/Settings";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import User from "./containers/User";
 import Page404Error from "./containers/Page404Error";
 
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import { Layout } from "antd";
 const { Header, Content, Footer } = Layout;
 
 function App() {

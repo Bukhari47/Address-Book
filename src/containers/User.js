@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { Row, Col, Divider, Typography } from "antd";
+import ErrorBoundary from "../components/ErrorBoundary";
 const { Text, Link, Title } = Typography;
 
 const selectedUser = (props) => {
@@ -13,11 +14,11 @@ const selectedUser = (props) => {
   let history = useHistory();
   const userId = props.match.params.userId;
   getUserId(userId);
-  useEffect(() => {
-    if (users.length === 0) {
-      history.push("/");
-    }
-  });
+  // useEffect(() => {
+  //   if (users.length === 0) {
+  //     history.push("/");
+  //   }
+  // });
   return (
     <Row>
       <Divider orientation="center">

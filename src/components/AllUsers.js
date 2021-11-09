@@ -4,13 +4,15 @@ import UserCard from "./UserCard";
 import { fetchMoreUsers } from "../redux/actions/usersAction";
 import { useSelector } from "react-redux";
 import { Typography, Row, Spin } from "antd";
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 import {
   filteredUserWithNat,
   filteredUserWithName,
   filteringUserWithNameInNat,
 } from "../selectors/filteringUser";
+import ErrorBoundary from "./ErrorBoundary";
+// import Title from "antd/lib/skeleton/Title";
 
 function AllUsers() {
   const nationality = useSelector((state) => state.nationality);
@@ -72,7 +74,15 @@ function AllUsers() {
     >
       <Row gutter={[48, 8]}>
         {usersState.users.map((user) => {
-          return <UserCard user={user} key={user.login.uuid} />;
+          return (
+            <>
+              {" "}
+              <UserCard user={user} key={user.login.uuid} />
+              {/* <ErrorBoundary>
+                <Title>Hello {user} </Title>
+              </ErrorBoundary> */}
+            </>
+          );
         })}
       </Row>
     </InfiniteScroll>

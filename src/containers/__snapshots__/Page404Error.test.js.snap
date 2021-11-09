@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should display 404 error 1`] = `
+<div
+  className="ant-row"
+  style={Object {}}
+>
+  <div
+    className="ant-col"
+    style={Object {}}
+  >
+    <span
+      className="ant-typography"
+      style={
+        Object {
+          "WebkitLineClamp": undefined,
+        }
+      }
+    >
+      <strong>
+        Opps...!!! Page not found...!!!
+      </strong>
+    </span>
+  </div>
+</div>
+`;
