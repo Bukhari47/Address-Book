@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Typography } from "antd";
-
+import { Typography, Button, Row, Col } from "antd";
 const { Title } = Typography;
 
 export class ErrorBoundary extends Component {
@@ -18,7 +17,14 @@ export class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <Title level={1}>Something went wrong</Title>;
+      return (
+        <Row>
+          <Col>
+            <Title level={1}>Something went wrong</Title>
+            <Button onClick={this.props.tryAgain}> Try Again </Button>
+          </Col>
+        </Row>
+      );
     }
     return this.props.children;
   }

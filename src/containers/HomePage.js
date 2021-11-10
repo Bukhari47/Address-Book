@@ -1,8 +1,7 @@
 import React from "react";
 import { PageHeader } from "antd";
 
-import AllUsers from "../components/AllUsers";
-
+import AllUsers from "../components/Homepage/AllUsers";
 const PageTitle = () => {
   return (
     <PageHeader

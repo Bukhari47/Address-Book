@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 import React from "react";
 
-import AppHeader from "./components/Header";
+import AppHeader from "./components/common/Header";
 import HomePage from "./containers/HomePage";
 import Settings from "./containers/Settings";
 import User from "./containers/User";
