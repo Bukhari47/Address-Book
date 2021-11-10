@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import UserCard from "./UserCard";
-import { fetchMoreUsers } from "../redux/actions/usersAction";
+import { fetchMoreUsers } from "../../redux/actions/usersAction";
 import { useSelector } from "react-redux";
 import { Typography, Row, Spin } from "antd";
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 import {
   filteredUserWithNat,
   filteredUserWithName,
   filteringUserWithNameInNat,
-} from "../selectors/filteringUser";
+} from "../../selectors/filteringUser";
+
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallbackComponent from "../common/ErrorFallbackComponent";
+import { fetchUser } from "../../redux/actions/usersAction";
 
 function AllUsers() {
   const nationality = useSelector((state) => state.nationality);
@@ -23,6 +27,7 @@ function AllUsers() {
     users: [],
     scrollEndMessage: "You have seen all users.",
   });
+
   const [hasMore, setHasMore] = useState(true);
   useEffect(() => {
     if (search !== "" && nationality !== "") {
@@ -72,7 +77,12 @@ function AllUsers() {
     >
       <Row gutter={[48, 8]}>
         {usersState.users.map((user) => {
-          return <UserCard user={user} key={user.login.uuid} />;
+          return (
+            <>
+              {" "}
+              <UserCard user={user} key={user.login.uuid} />
+            </>
+          );
         })}
       </Row>
     </InfiniteScroll>

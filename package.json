@@ -3,7 +3,7 @@
   "description": "React and Redux Pluralsight course by Cory House",
   "scripts": {
     "start": "webpack serve --config webpack.config.dev.js --port 3000",
-    "test": "jest --watch",
+    "test": "jest --env=jsdom --watch",
     "clean:build": "rimraf ./build && mkdir build",
     "build": "webpack --config webpack.config.prod.js"
   },
@@ -23,6 +23,7 @@
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-error-boundary": "^3.1.4",
     "react-infinite-scroll-component": "^6.1.0",
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.0",
@@ -41,7 +42,6 @@
     "babel-preset-react-app": "10.0.0",
     "css-loader": "5.2.6",
     "cssnano": "5.0.6",
-    "enzyme": "3.11.0",
     "eslint": "7.30.0",
     "eslint-loader": "4.0.2",
     "eslint-plugin-import": "2.23.4",
