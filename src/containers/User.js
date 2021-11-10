@@ -7,6 +7,9 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import { Row, Col, Divider, Typography, Image } from "antd";
 import ErrorFallbackComponent from "../components/common/ErrorFallbackComponent";
+import UserDetailsLeft from "../components/user/UserDetailsLeft";
+import UserDetailsRight from "../components/user/UserDetailsRight";
+import UserHeading from "../components/user/UserHeading";
 const { Text, Link, Title } = Typography;
 
 const selectedUser = (props) => {
@@ -36,79 +39,25 @@ const selectedUser = (props) => {
       <Divider>
         <Title level={2}>User Details</Title>
       </Divider>
-      <Col span={4}></Col>
-      <Col span={16}>
+      <Col span={24}>
         {singleUser?.map((singleUser) => {
           return (
-            <>
-              {" "}
-              <div style={{ textAlign: "center" }}>
-                <Image
-                  src={singleUser.picture.large}
-                  alt={singleUser.picture.large}
-                  style={{ borderRadius: "50%" }}
-                />
-                <Divider>
-                  <Title level={2}>
-                    {singleUser.name.title +
-                      " " +
-                      singleUser.name.first +
-                      " " +
-                      singleUser.name.last}
-                  </Title>
-                </Divider>
-                <Row>
-                  <Col span={12} style={{ textAlign: "left" }}>
-                    <Text strong>Username : </Text>
-                    <Text italic>{singleUser.login.username}</Text>
-                    <Divider />
-                    <Text strong>Date Of Birth : </Text>
-                    <Text italic>{singleUser.dob.date}</Text>
-                    <Divider />
-                    <Text strong>Current Age : </Text>
-                    <Text italic>{singleUser.dob.age}</Text>
-                    <Divider />
-                    <Text strong>Gender : </Text>
-                    <Text italic>{singleUser.gender}</Text>
-                    <Divider />
-
-                    <Text strong>Email : </Text>
-
-                    <Link target="_blank">{singleUser.email}</Link>
-                    <Divider />
-                    <Text strong>Cell : </Text>
-                    <Text italic>{singleUser.cell}</Text>
-                  </Col>
-                  <Col span={12} style={{ textAlign: "left" }}>
-                    <Text strong>Address : </Text>
-                    <Text italic>
-                      Street NO# {singleUser.location.street.number}{" "}
-                      {singleUser.location.street.name},
-                      {singleUser.location.city}
-                    </Text>
-                    <Divider />
-                    <Text strong>City : </Text>
-                    <Text italic>{singleUser.location.city}</Text>
-                    <Divider />
-                    <Text strong>State : </Text>
-                    <Text italic>{singleUser.location.state}</Text>
-                    <Divider />
-                    <Text strong>Country : </Text>
-                    <Text italic>{singleUser.location.country}</Text>
-                    <Divider />
-                    <Text strong>Nationality : </Text>
-                    <Text italic>{singleUser.nat}</Text>.
-                    <Divider />
-                    <Text strong>Phone : </Text>
-                    <Text italic>{singleUser.phone}</Text>
-                  </Col>
-                </Row>
-              </div>
-            </>
+            <Row key={singleUser.login.uuid} style={{ textAlign: "center" }}>
+              <Col span={24}>
+                <UserHeading singleUser={singleUser} />
+              </Col>
+              <Row>
+                <Col span={12}>
+                  <UserDetailsLeft singleUser={singleUser} />
+                </Col>
+                <Col span={12}>
+                  <UserDetailsRight singleUser={singleUser} />
+                </Col>
+              </Row>
+            </Row>
           );
         })}
       </Col>
-      <Col span={4}></Col>
     </Row>
   );
 };
