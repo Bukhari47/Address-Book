@@ -12,10 +12,6 @@ import {
   filteringUserWithNameInNat,
 } from "../../selectors/filteringUser";
 
-import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallbackComponent from "../common/ErrorFallbackComponent";
-import { fetchUser } from "../../redux/actions/usersAction";
-
 function AllUsers() {
   const nationality = useSelector((state) => state.nationality);
   const users = useSelector((state) => state.users);

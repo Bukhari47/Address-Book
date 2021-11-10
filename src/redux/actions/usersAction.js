@@ -59,7 +59,7 @@ const fetchMoreUsersFailure = (error) => {
 export async function fetchUser() {
   try {
     store.dispatch(fetchUsersRequest());
-    const response = await fetch(`${API}/?results=50`);
+    const response = await fetch(`${API}/?results=100`);
     const UsersDetails = await response.json();
     store.dispatch(fetchUsersSuccess(UsersDetails.results));
   } catch (e) {

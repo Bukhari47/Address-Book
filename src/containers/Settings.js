@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Select, Typography } from "antd";
+import { Divider, Row, Select, Typography } from "antd";
 import { filterUser, getNationality } from "../redux/actions/usersAction";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -16,7 +16,7 @@ function Settings() {
   }
 
   return (
-    <div style={{ marginBottom: "20px", textAlign: "center" }}>
+    <Row style={{ marginBottom: "20px", textAlign: "center" }}>
       <Divider orientation="center">
         <Title>Select Nationality</Title>
       </Divider>
@@ -31,7 +31,7 @@ function Settings() {
         <Option value="GB">GB</Option>
         <Option value="CH">CH</Option>
       </Select>
-    </div>
+    </Row>
   );
 }
 

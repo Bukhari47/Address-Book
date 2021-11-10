@@ -1,11 +1,16 @@
 import "antd/dist/antd.css";
-import React from "react";
+import React, { lazy, Suspense } from "react";
 
 import AppHeader from "./components/common/Header";
-import HomePage from "./containers/HomePage";
-import Settings from "./containers/Settings";
-import User from "./containers/User";
-import Page404Error from "./containers/Page404Error";
+// import HomePage from "./containers/HomePage";
+// import Settings from "./containers/Settings";
+// import User from "./containers/User";
+// import Page404Error from "./containers/Page404Error";
+
+const LazyHomePage = lazy(() => import("./containers/HomePage"));
+const LazySettings = lazy(() => import("./containers/Settings"));
+const LazyPage404Error = lazy(() => import("./containers/Page404Error"));
+const LazyUser = lazy(() => import("./containers/User"));
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -28,10 +33,12 @@ function App() {
             style={{ padding: 24, minHeight: 380 }}
           >
             <Switch>
-              <Route path="/" exact component={HomePage} />
-              <Route path="/settings" component={Settings} />
-              <Route path="/user/:userId" component={User} />
-              <Route component={Page404Error} />
+              <Suspense fallback="Loading...">
+                <Route path="/" exact component={LazyHomePage} />
+                <Route path="/settings" component={LazySettings} />
+                <Route path="/user/:userId" component={LazyUser} />
+              </Suspense>
+              <Route component={LazyPage404Error} />
             </Switch>
           </div>
         </Content>
