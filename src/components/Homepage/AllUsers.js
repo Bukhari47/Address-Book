@@ -52,7 +52,7 @@ function AllUsers() {
   }, [nationality, search, users]);
 
   const loadMoreUsers = () => {
-    if (usersState.users.length <= 999) {
+    if (usersState.users.length <= 949) {
       fetchMoreUsers();
     } else {
       setHasMore(false);

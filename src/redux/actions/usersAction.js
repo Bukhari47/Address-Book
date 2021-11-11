@@ -56,6 +56,25 @@ const fetchMoreUsersFailure = (error) => {
   };
 };
 
+const preLoadUsersRequest = () => {
+  return {
+    type: actionTypes.LOAD_IN_STATE_REQUEST,
+  };
+};
+
+const preLoadUsersSuccess = (preLoadUsers) => {
+  return {
+    type: actionTypes.LOAD_IN_STATE_SUCCESS,
+    payload: preLoadUsers,
+  };
+};
+const preLoadUsersFailure = (error) => {
+  return {
+    type: actionTypes.LOAD_IN_STATE_FAILURE,
+    payload: error,
+  };
+};
+
 export async function fetchUser() {
   try {
     store.dispatch(fetchUsersRequest());
@@ -67,12 +86,27 @@ export async function fetchUser() {
   }
 }
 
-export async function fetchMoreUsers() {
+fetchUser();
+
+export async function loadInState() {
   try {
-    store.dispatch(fetchMoreUsersRequest());
+    console.log("Call Recived", store.getState());
+    store.dispatch(preLoadUsersRequest());
     const response = await fetch(`${API}/?results=50`);
     const UsersDetails = await response.json();
-    store.dispatch(fetchMoreUsersSuccess(UsersDetails.results));
+    console.log("UsersDetails", UsersDetails);
+    store.dispatch(preLoadUsersSuccess(UsersDetails.results));
+  } catch (e) {
+    store.dispatch(preLoadUsersFailure(e.message));
+  }
+}
+
+loadInState();
+
+export async function fetchMoreUsers() {
+  try {
+    store.dispatch(fetchMoreUsersSuccess(store.getState().preLoadUsers));
+    loadInState();
   } catch (e) {
     store.dispatch(fetchMoreUsersFailure(e.message));
   }
@@ -105,8 +139,5 @@ export function getNationality(nationality) {
 }
 
 export function filterUser(users) {
-  console.log("Seacrh", users);
   store.dispatch(searchUser(users));
 }
-
-fetchUser();

@@ -2,6 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   loading: false,
   users: [],
+  preLoadUsers: [],
   error: "",
   nationality: "",
   search: "",
@@ -32,19 +33,12 @@ const fetchUserData = (state = initialState, action) => {
       return searchUsers(state, action);
     case actionTypes.SINGLE_USER_PAGE:
       return singleUserPage(state, action);
-    // case actionTypes.FETCH_WITH_NATIONALITY_REQUEST:
-    //   return fetchUsersWithNationalityRequest(state, action);
-    // case actionTypes.FETCH_WITH_NATIONALITY_SUCCESS:
-    //   return fetchUsersWithNationalitySuccess(state, action);
-    // case actionTypes.FETCH_WITH_NATIONALITY_FAILURE:
-    //   return fetchUsersWithNationalityFailure(state, action);
-    // case actionTypes.FETCH_MORE_WITH_NATIONALITY_REQUEST:
-    //   return fetchMoreUsersWithNationalityRequest(state, action);
-    // case actionTypes.FETCH_MORE_WITH_NATIONALITY_SUCCESS:
-    //   return fetchMoreUsersWithNationalitySucces(state, action);
-    // case actionTypes.FETCH_MORE_WITH_NATIONALITY_FAILURE:
-    //   return fetchMoreUsersWithNationalityFailure(state, action);
-
+    case actionTypes.LOAD_IN_STATE_REQUEST:
+      return loadingInStateRequest(state, action);
+    case actionTypes.LOAD_IN_STATE_SUCCESS:
+      return loadingInStateSuccess(state, action);
+    case actionTypes.LOAD_IN_STATE_FAILURE:
+      return loadingInStateFailure(state, action);
     default:
       return state;
   }
@@ -96,7 +90,6 @@ const deleteUser = (state, action) => {
 };
 
 const searchUsers = (state, action) => {
-  console.log("Search...!!!", action.search);
   return {
     ...state,
     search: action.search,
@@ -120,43 +113,27 @@ const fetchMoreUsersFailure = (state, action) => {
 };
 
 const singleUserPage = (state, action) => {
-  // console.log("Users Reducer ", state, action.payload);
   return {
     ...state,
     userId: action.payload,
   };
 };
 
-// const fetchUsersWithNationalityRequest = (state) => {
-//   return {
-//     ...state,
-//   };
-// };
-// const fetchUsersWithNationalitySuccess = (state, action) => {
-//   return {
-//     ...state,
-//     users: action.payload,
-//     error: "",
-//   };
-// };
-// const fetchUsersWithNationalityFailure = (state, action) => {
-//   return {
-//     ...state,
-//     loading: false,
-//     error: action.payload,
-//   };
-// };
-// const fetchMoreUsersWithNationalityRequest = (state) => {
-//   return {};
-// };
-// const fetchMoreUsersWithNationalitySucces = (state, action) => {
-//   console.log("Nat Users Reponse", action.payload);
-//   return {
-//     ...state,
-//     users: [...state.users, ...action.payload],
-//     error: "",
-//   };
-// };
-// const fetchMoreUsersWithNationalityFailure = (state, action) => {
-//   return { ...state, loading: false, error: action.payload };
-// };
+const loadingInStateRequest = (state) => {
+  return {
+    ...state,
+  };
+};
+const loadingInStateSuccess = (state, action) => {
+  console.log("Loaded IN State");
+  return {
+    ...state,
+    preLoadUsers: action.payload,
+  };
+};
+const loadingInStateFailure = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+  };
+};

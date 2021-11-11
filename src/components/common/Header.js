@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Layout, Input, Menu } from "antd";
 import { filterUser } from "../../redux/actions/usersAction";
 import { Link } from "react-router-dom";
@@ -6,10 +6,7 @@ import { useSelector } from "react-redux";
 import { UserOutlined } from "@ant-design/icons";
 const { Header } = Layout;
 
-function AppHeader(props) {
-  useEffect(() => {
-    console.log(props);
-  }, [props]);
+function AppHeader() {
   const search = useSelector((state) => state.search);
 
   return (
