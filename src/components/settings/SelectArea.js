@@ -1,9 +1,13 @@
 import React from "react";
 import { Select } from "antd";
 const { Option } = Select;
-function SelectArea({ handleChange, nationality }) {
+function SelectArea({ handleNationalityChange, nationality }) {
   return (
-    <Select style={{ width: 120 }} onChange={handleChange} value={nationality}>
+    <Select
+      style={{ width: 120 }}
+      onChange={handleNationalityChange}
+      value={nationality}
+    >
       <Option value="">none</Option>
       <Option value="ES">ES</Option>
       <Option value="FR">FR</Option>

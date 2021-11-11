@@ -9,7 +9,7 @@ function Settings() {
   const history = useHistory();
   const nationality = useSelector((state) => state.nationality);
 
-  function handleChange(value) {
+  function handleNationalityChange(value) {
     getNationality(value);
     filterUser("");
     history.push("/");
@@ -24,7 +24,10 @@ function Settings() {
         />
       </Col>
       <Col>
-        <SelectArea handleChange={handleChange} nationality={nationality} />
+        <SelectArea
+          handleNationalityChange={handleNationalityChange}
+          nationality={nationality}
+        />
       </Col>
     </Row>
   );
