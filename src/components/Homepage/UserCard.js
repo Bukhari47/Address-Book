@@ -1,9 +1,10 @@
 import React from "react";
-import { Col, Card, Avatar } from "antd";
+import { Col, Card, Avatar, Divider, Typography } from "antd";
 import { MoreOutlined, DeleteOutlined } from "@ant-design/icons";
 import { deleteUserDetials } from "../../redux/actions/usersAction";
 import { Link } from "react-router-dom";
 const { Meta } = Card;
+const { Text } = Typography;
 
 function UsersCard({ user }) {
   return (
@@ -36,12 +37,12 @@ function UsersCard({ user }) {
             }
             description={
               <>
-                <div>
-                  <b>Email </b> <code>{user.email}</code>
-                </div>
-                <div>
-                  <b>Nationality </b> <span>{user.nat}</span>
-                </div>
+                <Divider />
+                <Text strong>Email : </Text>
+                <Text italic>{user.email}</Text>
+                <Divider />
+                <Text strong>Nationality : </Text>
+                <Text italic>{user.nat}</Text>
               </>
             }
           />

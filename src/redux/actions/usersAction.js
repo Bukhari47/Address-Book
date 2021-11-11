@@ -86,22 +86,16 @@ export async function fetchUser() {
   }
 }
 
-fetchUser();
-
 export async function loadInState() {
   try {
-    console.log("Call Recived", store.getState());
     store.dispatch(preLoadUsersRequest());
     const response = await fetch(`${API}/?results=50`);
     const UsersDetails = await response.json();
-    console.log("UsersDetails", UsersDetails);
     store.dispatch(preLoadUsersSuccess(UsersDetails.results));
   } catch (e) {
     store.dispatch(preLoadUsersFailure(e.message));
   }
 }
-
-loadInState();
 
 export async function fetchMoreUsers() {
   try {

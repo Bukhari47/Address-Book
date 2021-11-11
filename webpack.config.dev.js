@@ -26,7 +26,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "Address Book",
-      template: "src/index.html",
+      template: "src/Index.html",
     }),
   ],
   module: {

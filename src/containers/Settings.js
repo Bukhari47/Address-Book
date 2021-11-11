@@ -1,10 +1,10 @@
 import React from "react";
-import { Divider, Row, Select, Typography } from "antd";
+import { Col, Row } from "antd";
 import { filterUser, getNationality } from "../redux/actions/usersAction";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-const { Option } = Select;
-const { Title } = Typography;
+import PagesHeader from "../components/common/PageHeader";
+import SelectArea from "../components/settings/SelectArea";
 function Settings() {
   const history = useHistory();
   const nationality = useSelector((state) => state.nationality);
@@ -17,20 +17,15 @@ function Settings() {
 
   return (
     <Row style={{ marginBottom: "20px", textAlign: "center" }}>
-      <Divider orientation="center">
-        <Title>Select Nationality</Title>
-      </Divider>
-      <Select
-        style={{ width: 120 }}
-        onChange={handleChange}
-        value={nationality}
-      >
-        <Option value="">none</Option>
-        <Option value="ES">ES</Option>
-        <Option value="FR">FR</Option>
-        <Option value="GB">GB</Option>
-        <Option value="CH">CH</Option>
-      </Select>
+      <Col span={24}>
+        <PagesHeader
+          title={"Settings"}
+          subTitle={"You can Select nationality of users"}
+        />
+      </Col>
+      <Col>
+        <SelectArea handleChange={handleChange} nationality={nationality} />
+      </Col>
     </Row>
   );
 }
