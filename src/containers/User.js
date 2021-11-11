@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getUserId } from "../redux/actions/usersAction";
 import { filteredSingleUser } from "../selectors/userSelector";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+<<<<<<< HEAD
 import { ErrorBoundary } from "react-error-boundary";
 
 import { Row, Col, Divider, Typography, Image } from "antd";
@@ -11,6 +12,12 @@ import UserDetailsLeft from "../components/user/UserDetailsLeft";
 import UserDetailsRight from "../components/user/UserDetailsRight";
 import UserHeading from "../components/user/UserHeading";
 const { Text, Link, Title } = Typography;
+=======
+import { Row, Col } from "antd";
+import UserDetailsLeft from "../components/user/UserDetailsLeft";
+import UserDetailsRight from "../components/user/UserDetailsRight";
+import UserTop from "../components/user/UserTop";
+>>>>>>> feature/feature_branch
 
 const selectedUser = (props) => {
   const history = useHistory();
@@ -21,13 +28,12 @@ const selectedUser = (props) => {
     if (users.length === 0) {
       history.push("/");
     }
-    console.log("object", error);
-  }, [error]);
-  const [error, setError] = useState({});
+  });
   getUserId(userId);
 
   return (
     <Row>
+<<<<<<< HEAD
       <ErrorBoundary
         FallbackComponent={ErrorFallbackComponent}
         onReset={() => {
@@ -55,6 +61,18 @@ const selectedUser = (props) => {
                 </Col>
               </Row>
             </Row>
+=======
+      <Col span={24}>
+        {singleUser?.map((singleUser) => {
+          return (
+            <>
+              <UserTop singleUser={singleUser} />
+              <Row>
+                <UserDetailsLeft singleUser={singleUser} />
+                <UserDetailsRight singleUser={singleUser} />
+              </Row>
+            </>
+>>>>>>> feature/feature_branch
           );
         })}
       </Col>
