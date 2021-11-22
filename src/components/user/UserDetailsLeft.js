@@ -5,7 +5,7 @@ const { Text, Link } = Typography;
 
 function UserDetailsLeft({ singleUser }) {
   return (
-    <Col span={12} style={{ textAlign: "left" }}>
+    <Col span={12}>
       <Text strong>Username : </Text>
       <Text italic>{singleUser.login.username}</Text>
       <Divider />

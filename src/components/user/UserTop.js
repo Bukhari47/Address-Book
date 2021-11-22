@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Divider, Row, Col } from "antd";
-import PagesHeader from "../common/PageHeader";
+import PagesHeader from "../common/header/PageHeader";
 
 function UserTop({ singleUser }) {
   return (
@@ -20,6 +20,7 @@ function UserTop({ singleUser }) {
         <Image
           src={singleUser.picture.large}
           alt={singleUser.picture.large}
+          className="ImageStyle"
           style={{ borderRadius: "50%" }}
         />
       </Col>

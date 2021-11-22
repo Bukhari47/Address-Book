@@ -3,7 +3,7 @@ import { Col, Row } from "antd";
 import { filterUser, getNationality } from "../redux/actions/usersAction";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import PagesHeader from "../components/common/PageHeader";
+import PagesHeader from "../components/common/header/PageHeader";
 import SelectArea from "../components/settings/SelectArea";
 function Settings() {
   const history = useHistory();
@@ -16,14 +16,14 @@ function Settings() {
   }
 
   return (
-    <Row style={{ marginBottom: "20px", textAlign: "center" }}>
+    <Row>
       <Col span={24}>
         <PagesHeader
           title={"Settings"}
           subTitle={"You can Select nationality of users"}
         />
       </Col>
-      <Col>
+      <Col span={24} className="center">
         <SelectArea
           handleNationalityChange={handleNationalityChange}
           nationality={nationality}

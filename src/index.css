@@ -13,3 +13,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.Infinitescrollstyle {
+  overflow: "none";
+}
+.UserCardStyle {
+  width: 400px;
+}
+.ImageStyle {
+  border-radius: 50%;
+}
+.center {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}

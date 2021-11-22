@@ -1,9 +1,8 @@
 import React from "react";
 import { Typography, Row, Button, Col } from "antd";
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 export default function ErrorFallbackComponent({ error, resetErrorBoundary }) {
-  console.log("object");
   return (
     <Row>
       <Col>

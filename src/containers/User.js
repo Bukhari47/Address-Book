@@ -21,7 +21,7 @@ const selectedUser = (props) => {
   getUserId(userId);
 
   return (
-    <Row>
+    <Row className="center SingelUserPage">
       <Col span={24}>
         {singleUser?.map((singleUser) => {
           return (

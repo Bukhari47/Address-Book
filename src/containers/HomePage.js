@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import AllUsers from "../components/Homepage/AllUsers";
-import PagesHeader from "../components/common/PageHeader";
+import AllUsers from "../components/homepage/AllUsers";
+import PagesHeader from "../components/common/header/PageHeader";
 import { useSelector } from "react-redux";
 import {
   filteredUserWithNat,

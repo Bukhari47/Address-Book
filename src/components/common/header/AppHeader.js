@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout, Input, Menu } from "antd";
-import { filterUser } from "../../redux/actions/usersAction";
+import { filterUser } from "../../../redux/actions/usersAction";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { UserOutlined } from "@ant-design/icons";

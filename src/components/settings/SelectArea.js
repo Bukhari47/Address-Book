@@ -3,11 +3,7 @@ import { Select } from "antd";
 const { Option } = Select;
 function SelectArea({ handleNationalityChange, nationality }) {
   return (
-    <Select
-      style={{ width: 120 }}
-      onChange={handleNationalityChange}
-      value={nationality}
-    >
+    <Select onChange={handleNationalityChange} value={nationality}>
       <Option value="">none</Option>
       <Option value="ES">ES</Option>
       <Option value="FR">FR</Option>

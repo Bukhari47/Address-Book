@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 const { Meta } = Card;
 const { Text } = Typography;
 
-function UsersCard({ user }) {
+function UserCard({ user }) {
   return (
     <>
-      <Col span={8} style={{ marginTop: "10px" }}>
+      <Col span={8}>
         <Card
-          style={{ width: 400 }}
+          className="UserCardStyle"
           actions={[
             <DeleteOutlined
               key="delete"
@@ -52,4 +52,4 @@ function UsersCard({ user }) {
   );
 }
 
-export default UsersCard;
+export default UserCard;
