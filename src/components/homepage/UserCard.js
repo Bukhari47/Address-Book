@@ -25,7 +25,6 @@ function UserCard({ user }) {
                 pathname: "user/" + user.login.uuid,
               }}
             >
-              {" "}
               <MoreOutlined key="edit" />
             </Link>,
           ]}

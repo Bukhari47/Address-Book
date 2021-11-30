@@ -6,7 +6,7 @@ const LazyPage404Error = lazy(() => import("../Page404Error"));
 const LazyUser = lazy(() => import("../User"));
 const { Content } = Layout;
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Switch, Route } from "react-router-dom";
 
 function MyContent() {
   return (
