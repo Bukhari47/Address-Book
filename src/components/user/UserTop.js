@@ -3,9 +3,18 @@ import { Image, Divider, Row, Col } from "antd";
 import PagesHeader from "../common/header/PageHeader";
 
 function UserTop({ singleUser }) {
+  const userTitleLayout = {
+    xxl: { span: 12 },
+    xl: { span: 12 },
+    lg: { span: 12 },
+    md: { span: 24 },
+    xs: { span: 24 },
+    sm: { span: 24 },
+  };
+
   return (
     <Row>
-      <Col span={12}>
+      <Col {...userTitleLayout}>
         <PagesHeader
           title={
             singleUser.name.title +
@@ -16,7 +25,7 @@ function UserTop({ singleUser }) {
           }
         />
       </Col>
-      <Col span={12}>
+      <Col {...userTitleLayout}>
         <Image
           src={singleUser.picture.large}
           alt={singleUser.picture.large}

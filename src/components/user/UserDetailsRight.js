@@ -1,10 +1,19 @@
 import React from "react";
-import { Typography, Col, Divider, Row } from "antd";
-const { Text, Link } = Typography;
+import { Typography, Col, Divider } from "antd";
+const { Text } = Typography;
 
 export default function UserDetailsRight({ singleUser }) {
+  const userLeftLayout = {
+    xxl: { span: 12 },
+    xl: { span: 12 },
+    lg: { span: 12 },
+    md: { span: 12 },
+    xs: { span: 24 },
+    sm: { span: 24 },
+  };
+
   return (
-    <Col span={12}>
+    <Col {...userLeftLayout}>
       <Text strong>Address : </Text>
       <Text italic>
         Street NO# {singleUser.location.street.number}{" "}
@@ -25,6 +34,7 @@ export default function UserDetailsRight({ singleUser }) {
       <Divider />
       <Text strong>Phone : </Text>
       <Text italic>{singleUser.phone}</Text>
+      <Divider />
     </Col>
   );
 }

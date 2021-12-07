@@ -4,8 +4,16 @@ import { Divider, Col, Typography } from "antd";
 const { Text, Link } = Typography;
 
 function UserDetailsLeft({ singleUser }) {
+  const userRightLayout = {
+    xxl: { span: 12 },
+    xl: { span: 12 },
+    lg: { span: 12 },
+    md: { span: 24 },
+    xs: { span: 24 },
+    sm: { span: 24 },
+  };
   return (
-    <Col span={12}>
+    <Col {...userRightLayout}>
       <Text strong>Username : </Text>
       <Text italic>{singleUser.login.username}</Text>
       <Divider />
@@ -25,6 +33,7 @@ function UserDetailsLeft({ singleUser }) {
       <Divider />
       <Text strong>Cell : </Text>
       <Text italic>{singleUser.cell}</Text>
+      <Divider />
     </Col>
   );
 }
