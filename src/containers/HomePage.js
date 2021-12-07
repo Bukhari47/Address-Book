@@ -1,55 +1,29 @@
 import React, { useState, useEffect } from "react";
 import AllUsers from "../components/homepage/AllUsers";
 import PagesHeader from "../components/common/header/PageHeader";
-import { useSelector } from "react-redux";
-import {
-  filteredUserWithNat,
-  filteredUserWithName,
-  filteringUserWithNameInNat,
-} from "../selectors/filteringUser";
-import { fetchMoreUsers } from "../redux/actions/usersAction";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers, fetchMoreUsers } from "../redux/actions/usersAction";
+import { filtertingUsers } from "../redux/selectors/filteringUser";
 import { Col, Row } from "antd";
 
 export default function HomePage() {
-  const nationality = useSelector((state) => state.nationality);
-  const users = useSelector((state) => state.users);
-  const search = useSelector((state) => state.search);
-  const natUsers = useSelector((state) => filteredUserWithNat(state));
-  const nameFilter = useSelector((state) => filteredUserWithName(state));
-  const natAndName = useSelector((state) => filteringUserWithNameInNat(state));
-  const [usersState, setUsersState] = useState({
-    users: [],
-    scrollEndMessage: "You have seen all users.",
-  });
-
+  const { nationality, search } = useSelector((state) => state);
+  const users = useSelector((state) => filtertingUsers(state));
+  const dispatch = useDispatch();
+  const usersLimit = {
+    initialFetch: 100,
+    after: 50,
+    totalUsers: 999,
+  };
   const [hasMore, setHasMore] = useState(true);
+
   useEffect(() => {
-    if (search !== "" && nationality !== "") {
-      setUsersState({
-        users: natAndName,
-        scrollEndMessage: `No More Results Found According to the following keywords in following ${nationality} `,
-      });
-    } else if (search !== "") {
-      setUsersState({
-        users: nameFilter,
-        scrollEndMessage: `No more users found according to the following keywords`,
-      });
-    } else if (nationality !== "") {
-      setUsersState({
-        users: natUsers,
-        scrollEndMessage: `No more users from ${nationality} nationality`,
-      });
-    } else {
-      setUsersState({
-        users: users,
-        scrollEndMessage: "You have seen all users.",
-      });
-    }
-  }, [nationality, search, users]);
+    dispatch(fetchUsers(usersLimit.initialFetch));
+  }, []);
 
   const loadMoreUsers = () => {
-    if (usersState.users.length <= 949) {
-      fetchMoreUsers();
+    if (users?.length <= usersLimit.totalUsers) {
+      dispatch(fetchMoreUsers(usersLimit.after));
     } else {
       setHasMore(false);
     }
@@ -63,7 +37,6 @@ export default function HomePage() {
       <Col span={24}>
         <AllUsers
           loadMoreUsers={loadMoreUsers}
-          usersState={usersState}
           users={users}
           hasMore={hasMore}
           nationality={nationality}

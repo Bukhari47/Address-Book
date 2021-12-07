@@ -1,12 +1,14 @@
 import React from "react";
 import { Layout, Input, Menu } from "antd";
 import { filterUser } from "../../../redux/actions/usersAction";
+
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { UserOutlined } from "@ant-design/icons";
 const { Header } = Layout;
 
 function AppHeader() {
+  const dispatch = useDispatch();
   const search = useSelector((state) => state.search);
 
   return (
@@ -19,19 +21,17 @@ function AppHeader() {
           <Link to="/settings">Settings</Link>
         </Menu.Item>
 
-        {
-          <Menu.Item key={"Seacrh"} disabled>
-            <Input
-              size="large"
-              placeholder="search"
-              value={search}
-              onChange={(e) => {
-                filterUser(e.target.value);
-              }}
-              prefix={<UserOutlined />}
-            />
-          </Menu.Item>
-        }
+        <Menu.Item key={"Seacrh"} disabled>
+          <Input
+            size="large"
+            placeholder="search"
+            value={search}
+            onChange={(e) => {
+              dispatch(filterUser(e.target.value));
+            }}
+            prefix={<UserOutlined />}
+          />
+        </Menu.Item>
       </Menu>
     </Header>
   );

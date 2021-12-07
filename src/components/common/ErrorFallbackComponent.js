@@ -7,7 +7,8 @@ export default function ErrorFallbackComponent({ error, resetErrorBoundary }) {
     <Row>
       <Col>
         <Title level={4}>Something went wrong</Title>
-        <Button onClick={resetErrorBoundary}>Click To Try Again... </Button>
+        {error}
+        <Button onClick={resetErrorBoundary}>Click To Try Again...</Button>
       </Col>
     </Row>
   );

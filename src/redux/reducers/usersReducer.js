@@ -25,8 +25,8 @@ const fetchUserData = (state = initialState, action) => {
       return fetchMoreUsersSucces(state, action);
     case actionTypes.FETCH_MORE_USERS_FAILURE:
       return fetchMoreUsersFailure(state, action);
-    case actionTypes.GET_NATIONALITY:
-      return fetchWithNationality(state, action);
+    case actionTypes.SET_NATIONALITY:
+      return setNationality(state, action);
     case actionTypes.DELETE_USER:
       return deleteUser(state, action);
     case actionTypes.SEARCH_USER:
@@ -55,7 +55,8 @@ const fetchUsersSuccess = (state, action) => {
   return {
     ...state,
     loading: true,
-    users: action.payload,
+    users: [...state.users, ...action.payload.users],
+    preLoadUsers: action.payload.preLoadUsers,
     error: "",
   };
 };
@@ -73,10 +74,11 @@ const fetchMoreUsers = (state, action) => {
     loading: false,
   };
 };
-const fetchWithNationality = (state, action) => {
+const setNationality = (state, action) => {
   return {
     ...state,
     nationality: action.payload,
+    search: "",
   };
 };
 
@@ -119,15 +121,18 @@ const singleUserPage = (state, action) => {
   };
 };
 
-const loadingInStateRequest = (state) => {
+const loadingInStateRequest = (state, action) => {
+  console.log("....", action);
   return {
     ...state,
+    loading: false,
   };
 };
 const loadingInStateSuccess = (state, action) => {
-  console.log("Loaded IN State");
+  console.log("action", action);
   return {
     ...state,
+    loading: true,
     preLoadUsers: action.payload,
   };
 };

@@ -1,28 +1,29 @@
-import React, { useEffect } from "react";
-import { getUserId } from "../redux/actions/usersAction";
-import { filteredSingleUser } from "../selectors/userSelector";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import { Row, Col } from "antd";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setUserId } from "../redux/actions/usersAction";
+import { filteredSingleUser } from "../redux/selectors/userSelector";
 import UserDetailsLeft from "../components/user/UserDetailsLeft";
 import UserDetailsRight from "../components/user/UserDetailsRight";
 import UserTop from "../components/user/UserTop";
 
 const selectedUser = (props) => {
-  const history = useHistory();
+  const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const userId = props.match.params.userId;
   const singleUser = useSelector((state) => filteredSingleUser(state));
   useEffect(() => {
     if (users.length === 0) {
-      history.push("/");
+      window.location.replace("/");
     }
   });
-  getUserId(userId);
+  dispatch(setUserId(userId));
 
   return (
     <Row className="center SingelUserPage">
-      <Col span={24}>
+      <Col span={4}></Col>
+      <Col span={16}>
         {singleUser?.map((singleUser) => {
           return (
             <>
@@ -35,6 +36,7 @@ const selectedUser = (props) => {
           );
         })}
       </Col>
+      <Col span={4}></Col>
     </Row>
   );
 };

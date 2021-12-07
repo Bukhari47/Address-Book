@@ -3,20 +3,31 @@ import { Col, Card, Avatar, Divider, Typography } from "antd";
 import { MoreOutlined, DeleteOutlined } from "@ant-design/icons";
 import { deleteUserDetials } from "../../redux/actions/usersAction";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 const { Meta } = Card;
 const { Text } = Typography;
 
 function UserCard({ user }) {
+  const usersCard = {
+    xxl: { span: 8 },
+    xl: { span: 8 },
+    lg: { span: 12 },
+    md: { span: 12 },
+    xs: { span: 24 },
+    sm: { span: 24 },
+  };
+
+  const dispatch = useDispatch();
   return (
     <>
-      <Col span={8}>
+      <Col {...usersCard}>
         <Card
           className="UserCardStyle"
           actions={[
             <DeleteOutlined
               key="delete"
               onClick={() => {
-                deleteUserDetials(user.login.uuid);
+                dispatch(deleteUserDetials(user.login.uuid));
               }}
             />,
             <Link
