@@ -5,9 +5,10 @@ export const filtertingUsers = createSelector(
   (state) => state.nationality,
   (state) => state.search,
   (users, nationality, search) => {
-    let filteredUsers = users;
+    let usersList = users.length <= 950 ? users.slice(0, -50) : users;
+    let filteredUsers = usersList;
     if (search !== "") {
-      filteredUsers = users.filter((user) => {
+      filteredUsers = usersList.filter((user) => {
         return (
           user.name.first.toLowerCase().includes(search.toLowerCase()) ||
           user.name.last.toLowerCase().includes(search.toLowerCase())

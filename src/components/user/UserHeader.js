@@ -2,7 +2,7 @@ import React from "react";
 import { Image, Divider, Row, Col } from "antd";
 import PagesHeader from "../common/header/PageHeader";
 
-function UserTop({ singleUser }) {
+function UserHeader({ userDetail }) {
   const userTitleLayout = {
     xxl: { span: 12 },
     xl: { span: 12 },
@@ -17,18 +17,18 @@ function UserTop({ singleUser }) {
       <Col {...userTitleLayout}>
         <PagesHeader
           title={
-            singleUser.name.title +
+            userDetail.name.title +
             " " +
-            singleUser.name.first +
+            userDetail.name.first +
             " " +
-            singleUser.name.last
+            userDetail.name.last
           }
         />
       </Col>
       <Col {...userTitleLayout}>
         <Image
-          src={singleUser.picture.large}
-          alt={singleUser.picture.large}
+          src={userDetail.picture.large}
+          alt={userDetail.picture.large}
           className="ImageStyle"
           style={{ borderRadius: "50%" }}
         />
@@ -38,4 +38,4 @@ function UserTop({ singleUser }) {
   );
 }
 
-export default UserTop;
+export default UserHeader;

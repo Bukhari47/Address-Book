@@ -1,11 +1,13 @@
 import React from "react";
-import { Layout } from "antd";
+import { Layout, Row } from "antd";
 const { Footer } = Layout;
 
 function AppFooter() {
   return (
     <Footer>
-      A Random user app with the help of ANT Desgin and Random API{" "}
+      <Row justify="center">
+        A Random user app with the help of ANT Desgin and Random API{" "}
+      </Row>
     </Footer>
   );
 }

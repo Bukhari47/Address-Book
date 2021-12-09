@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AllUsers from "../components/homepage/AllUsers";
 import PagesHeader from "../components/common/header/PageHeader";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers, fetchMoreUsers } from "../redux/actions/usersAction";
+import { fetchUsers } from "../redux/actions/usersAction";
 import { filtertingUsers } from "../redux/selectors/filteringUser";
 import { Col, Row } from "antd";
 
@@ -23,7 +23,7 @@ export default function HomePage() {
 
   const loadMoreUsers = () => {
     if (users?.length <= usersLimit.totalUsers) {
-      dispatch(fetchMoreUsers(usersLimit.after));
+      dispatch(fetchUsers(usersLimit.after));
     } else {
       setHasMore(false);
     }
