@@ -1,9 +1,9 @@
 import { createSelector } from "reselect";
 
 export const filtertingUsers = createSelector(
-  (state) => state.users,
-  (state) => state.nationality,
-  (state) => state.search,
+  (state) => state.users.usersList,
+  (state) => state.users.nationality,
+  (state) => state.users.search,
   (users, nationality, search) => {
     let filteredUsers = users;
     if (search !== "") {

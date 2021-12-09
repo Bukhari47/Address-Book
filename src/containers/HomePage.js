@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, fetchMoreUsers } from "../redux/actions/usersAction";
 import { filtertingUsers } from "../redux/selectors/filteringUser";
 import { Col, Row } from "antd";
+import { getUsers, mergeLoadedUser } from "../redux/slice/userSlice";
 
 export default function HomePage() {
-  const { nationality, search } = useSelector((state) => state);
+  const { nationality, search } = useSelector((state) => state.users);
   const users = useSelector((state) => filtertingUsers(state));
   const dispatch = useDispatch();
   const usersLimit = {
@@ -18,15 +19,17 @@ export default function HomePage() {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchUsers(usersLimit.initialFetch));
+    dispatch(getUsers(usersLimit.initialFetch));
+    // dispatch(fetchUsers(usersLimit.initialFetch));
   }, []);
 
   const loadMoreUsers = () => {
-    if (users?.length <= usersLimit.totalUsers) {
-      dispatch(fetchMoreUsers(usersLimit.after));
-    } else {
-      setHasMore(false);
-    }
+    dispatch(mergeLoadedUser());
+    //   if (users?.length <= usersLimit.totalUsers) {
+    //     dispatch(fetchMoreUsers(usersLimit.after));
+    //   } else {
+    //     setHasMore(false);
+    //   }
   };
 
   return (
