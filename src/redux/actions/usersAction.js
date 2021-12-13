@@ -1,8 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
 
-import store from "../reduxStore";
-
 const API = "https://randomuser.me/api";
 
 export const fetchUsersRequest = () => {
@@ -14,8 +12,7 @@ const fetchUsersSuccess = (users) => {
   return {
     type: actionTypes.FETCH_USERS_SUCCESS,
     payload: {
-      users: users.slice(0, 50),
-      preLoadUsers: users.slice(50, 100),
+      users,
     },
   };
 };
@@ -41,34 +38,9 @@ const searchUser = (username) => {
   };
 };
 
-const mergePreLoadedUsers = (users) => {
-  return {
-    type: actionTypes.FETCH_MORE_USERS_SUCCESS,
-    payload: users,
-  };
-};
-
-const preLoadUsersRequest = () => {
-  return {
-    type: actionTypes.LOAD_IN_STATE_REQUEST,
-  };
-};
-
-const preLoadUsersSuccess = (preLoadUsers) => {
-  return {
-    type: actionTypes.LOAD_IN_STATE_SUCCESS,
-    payload: preLoadUsers,
-  };
-};
-const preLoadUsersFailure = (error) => {
-  return {
-    type: actionTypes.LOAD_IN_STATE_FAILURE,
-    payload: error,
-  };
-};
 const userId = (UUID) => {
   return {
-    type: actionTypes.SINGLE_USER_PAGE,
+    type: actionTypes.USER_DETAILS,
     payload: UUID,
   };
 };
@@ -93,28 +65,6 @@ export const fetchUsers = (usersList) => {
         const errorMessage = error.message;
         dispatch(fetchUsersFailure(errorMessage));
       });
-  };
-};
-
-export const loadInState = (nextUsers) => {
-  return (dispatch) => {
-    dispatch(preLoadUsersRequest());
-    axios
-      .get(`${API}/?results=${nextUsers}`)
-      .then((response) => {
-        const users = response.data.results;
-        dispatch(preLoadUsersSuccess(users));
-      })
-      .catch((error) => {
-        dispatch(preLoadUsersFailure(error.message));
-      });
-  };
-};
-
-export const fetchMoreUsers = (nextUsers) => {
-  return (dispatch) => {
-    dispatch(mergePreLoadedUsers(store.getState().preLoadUsers));
-    dispatch(loadInState(nextUsers));
   };
 };
 

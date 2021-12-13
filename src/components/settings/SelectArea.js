@@ -9,9 +9,8 @@ function SelectArea({ handleNationalityChange, nationality }) {
           name={["Nationality", "Nationality"]}
           label="Select  Nationality"
           rules={[{ required: true }]}
-          value={nationality}
         >
-          <Select onChange={handleNationalityChange}>
+          <Select defaultValue={nationality} onChange={handleNationalityChange}>
             <Option value="">none</Option>
             <Option value="ES">ES</Option>
             <Option value="FR">FR</Option>

@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import AllUsers from "../components/homepage/AllUsers";
 import PagesHeader from "../components/common/header/PageHeader";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers, fetchMoreUsers } from "../redux/actions/usersAction";
 import { filtertingUsers } from "../redux/selectors/filteringUser";
 import { Col, Row } from "antd";
-import { getUsers, mergeLoadedUser } from "../redux/slice/userSlice";
+import { fetchUsers } from "../redux/slice/userSlice";
 
 export default function HomePage() {
   const { nationality, search } = useSelector((state) => state.users);
@@ -19,17 +18,15 @@ export default function HomePage() {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    dispatch(getUsers(usersLimit.initialFetch));
-    // dispatch(fetchUsers(usersLimit.initialFetch));
+    dispatch(fetchUsers(usersLimit.initialFetch));
   }, []);
 
   const loadMoreUsers = () => {
-    dispatch(getUsers(usersLimit.after));
-    //   if (users?.length <= usersLimit.totalUsers) {
-    //     dispatch(fetchMoreUsers(usersLimit.after));
-    //   } else {
-    //     setHasMore(false);
-    //   }
+    if (users?.length <= usersLimit.totalUsers) {
+      dispatch(fetchUsers(usersLimit.after));
+    } else {
+      setHasMore(false);
+    }
   };
 
   return (

@@ -3,8 +3,8 @@ import axios from "axios";
 
 const API = "https://randomuser.me/api";
 
-export const getUsers = createAsyncThunk(
-  "users/getUsers",
+export const fetchUsers = createAsyncThunk(
+  "users/fetchUsers",
   async (usersLimit) => {
     return axios.get(`${API}/?results=${usersLimit}`).then((response) => {
       return response.data.results;
@@ -25,26 +25,37 @@ const userDetails = createSlice({
   name: "userDetails",
   initialState: initialStateValue,
   reducers: {
-    mergeLoadedUser: (state) => {
-      state.usersList = [...state.usersList, ...state.preLoadUsers];
+    searchUsers: (state, action) => {
+      state.search = action.payload;
+    },
+    setNationality: (state, action) => {
+      state.nationality = action.payload;
+    },
+    setUserId: (state, action) => {
+      state.userId = action.payload;
+    },
+    deleteUser: (state, action) => {
+      state.usersList = state.usersList.filter(
+        (deleteUser) => deleteUser.login.uuid !== action.payload
+      );
     },
   },
   extraReducers: {
-    [getUsers.pending]: (state) => {
+    [fetchUsers.pending]: (state) => {
       state.loading = true;
     },
-    [getUsers.fulfilled]: (state, action) => {
+    [fetchUsers.fulfilled]: (state, action) => {
       state.usersList = [...state.usersList, ...action.payload];
       state.loading = false;
     },
-    [getUsers.rejected]: (state, action) => {
-      console.log("actuin", action);
+    [fetchUsers.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     },
   },
 });
 
-export const { mergeLoadedUser } = userDetails.actions;
+export const { searchUsers, setNationality, setUserId, deleteUser } =
+  userDetails.actions;
 
 export default userDetails.reducer;

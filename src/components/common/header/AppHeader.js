@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout, Input, Menu } from "antd";
-import { filterUser } from "../../../redux/actions/usersAction";
+import { searchUsers } from "../../../redux/slice/userSlice";
 
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -27,7 +27,7 @@ function AppHeader() {
             placeholder="search"
             value={search}
             onChange={(e) => {
-              dispatch(filterUser(e.target.value));
+              dispatch(searchUsers(e.target.value));
             }}
             prefix={<UserOutlined />}
           />

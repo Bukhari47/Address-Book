@@ -2,41 +2,35 @@ import { Row, Col } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setUserId } from "../redux/actions/usersAction";
+import { setUserId } from "../redux/slice/userSlice";
 import { filteredSingleUser } from "../redux/selectors/userSelector";
 import UserDetailsLeft from "../components/user/UserDetailsLeft";
 import UserDetailsRight from "../components/user/UserDetailsRight";
-import UserTop from "../components/user/UserTop";
+import UserHeader from "../components/user/UserHeader";
 
 const selectedUser = (props) => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
   const userId = props.match.params.userId;
-  const singleUser = useSelector((state) => filteredSingleUser(state));
+  const userDetails = useSelector((state) => filteredSingleUser(state));
   useEffect(() => {
-    if (users.length === 0) {
-      window.location.replace("/");
-    }
-  });
-  dispatch(setUserId(userId));
+    dispatch(setUserId(userId));
+  }, []);
 
   return (
-    <Row className="center SingelUserPage">
-      <Col span={4}></Col>
-      <Col span={16}>
-        {singleUser?.map((singleUser) => {
+    <Row justify="center" className="center SingelUserPage">
+      <Col span={8}>
+        {userDetails?.map((userDetail) => {
           return (
             <>
-              <UserTop singleUser={singleUser} />
+              <UserHeader userDetail={userDetail} />
               <Row>
-                <UserDetailsLeft singleUser={singleUser} />
-                <UserDetailsRight singleUser={singleUser} />
+                <UserDetailsLeft userDetail={userDetail} />
+                <UserDetailsRight userDetail={userDetail} />
               </Row>
             </>
           );
         })}
       </Col>
-      <Col span={4}></Col>
     </Row>
   );
 };

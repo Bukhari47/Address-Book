@@ -1,14 +1,14 @@
 import React from "react";
 import { Col, Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { setNationality } from "../redux/actions/usersAction";
+import { setNationality } from "../redux/slice/userSlice";
+
 import PagesHeader from "../components/common/header/PageHeader";
 import SelectArea from "../components/settings/SelectArea";
 
 function Settings() {
   const dispatch = useDispatch();
-  const nationality = useSelector((state) => state.nationality);
-
+  const { nationality } = useSelector((state) => state.users);
   const handleNationalityChange = (value) => {
     dispatch(setNationality(value));
   };

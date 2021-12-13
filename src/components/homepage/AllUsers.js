@@ -6,27 +6,17 @@ import UserCard from "./UserCard";
 const { Text } = Typography;
 
 function AllUsers({ loadMoreUsers, users, search, hasMore, nationality }) {
-  const spacesOnLeftRight = {
-    xxl: { span: 4 },
-    xl: { span: 4 },
-    lg: { span: 3 },
-    md: { span: 2 },
-    xs: { span: 1 },
-    sm: { span: 1 },
-  };
-
-  const formLayout = {
-    xxl: { span: 16 },
-    xl: { span: 16 },
-    lg: { span: 18 },
+  const userCardLayout = {
+    xxl: { span: 20 },
+    xl: { span: 20 },
+    lg: { span: 20 },
     md: { span: 20 },
     xs: { span: 22 },
     sm: { span: 22 },
   };
   return (
-    <Row>
-      <Col {...spacesOnLeftRight}></Col>
-      <Col {...formLayout}>
+    <Row justify="center">
+      <Col {...userCardLayout}>
         <InfiniteScroll
           dataLength={users.length}
           hasMore={search ? false : nationality ? false : hasMore}
@@ -42,7 +32,6 @@ function AllUsers({ loadMoreUsers, users, search, hasMore, nationality }) {
           </Row>
         </InfiniteScroll>
       </Col>
-      <Col {...spacesOnLeftRight}></Col>
     </Row>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Card, Avatar, Divider, Typography } from "antd";
 import { MoreOutlined, DeleteOutlined } from "@ant-design/icons";
-import { deleteUserDetials } from "../../redux/actions/usersAction";
+import { deleteUser } from "../../redux/slice/userSlice";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 const { Meta } = Card;
@@ -27,7 +27,7 @@ function UserCard({ user }) {
             <DeleteOutlined
               key="delete"
               onClick={() => {
-                dispatch(deleteUserDetials(user.login.uuid));
+                dispatch(deleteUser(user.login.uuid));
               }}
             />,
             <Link

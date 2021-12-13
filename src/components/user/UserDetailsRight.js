@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, Col, Divider } from "antd";
 const { Text } = Typography;
 
-export default function UserDetailsRight({ singleUser }) {
+export default function UserDetailsRight({ userDetail }) {
   const userLeftLayout = {
     xxl: { span: 12 },
     xl: { span: 12 },
@@ -16,24 +16,24 @@ export default function UserDetailsRight({ singleUser }) {
     <Col {...userLeftLayout}>
       <Text strong>Address : </Text>
       <Text italic>
-        Street NO# {singleUser.location.street.number}{" "}
-        {singleUser.location.street.name},{singleUser.location.city}
+        Street NO# {userDetail.location.street.number}{" "}
+        {userDetail.location.street.name},{userDetail.location.city}
       </Text>
       <Divider />
       <Text strong>City : </Text>
-      <Text italic>{singleUser.location.city}</Text>
+      <Text italic>{userDetail.location.city}</Text>
       <Divider />
       <Text strong>State : </Text>
-      <Text italic>{singleUser.location.state}</Text>
+      <Text italic>{userDetail.location.state}</Text>
       <Divider />
       <Text strong>Country : </Text>
-      <Text italic>{singleUser.location.country}</Text>
+      <Text italic>{userDetail.location.country}</Text>
       <Divider />
       <Text strong>Nationality : </Text>
-      <Text italic>{singleUser.nat}</Text>.
+      <Text italic>{userDetail.nat}</Text>.
       <Divider />
       <Text strong>Phone : </Text>
-      <Text italic>{singleUser.phone}</Text>
+      <Text italic>{userDetail.phone}</Text>
       <Divider />
     </Col>
   );
