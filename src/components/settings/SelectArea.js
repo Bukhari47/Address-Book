@@ -3,8 +3,7 @@ import { Col, Select, Form, Row } from "antd";
 const { Option } = Select;
 function SelectArea({ handleNationalityChange, nationality }) {
   return (
-    <Row>
-      <Col span={10}></Col>
+    <Row justify="center">
       <Col span={4}>
         <Form.Item
           name={["Nationality", "Nationality"]}
@@ -21,7 +20,6 @@ function SelectArea({ handleNationalityChange, nationality }) {
           </Select>
         </Form.Item>
       </Col>
-      <Col span={10}></Col>
     </Row>
   );
 }

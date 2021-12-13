@@ -15,7 +15,6 @@ export const getUsers = createAsyncThunk(
 const initialStateValue = {
   loading: false,
   usersList: [],
-  preLoadUsers: [],
   error: "",
   nationality: "",
   search: "",
@@ -35,8 +34,7 @@ const userDetails = createSlice({
       state.loading = true;
     },
     [getUsers.fulfilled]: (state, action) => {
-      state.usersList = action.payload.slice(0, 50);
-      state.preLoadUsers = action.payload.slice(50, 100);
+      state.usersList = [...state.usersList, ...action.payload];
       state.loading = false;
     },
     [getUsers.rejected]: (state, action) => {

@@ -24,7 +24,7 @@ export default function HomePage() {
   }, []);
 
   const loadMoreUsers = () => {
-    dispatch(mergeLoadedUser());
+    dispatch(getUsers(usersLimit.after));
     //   if (users?.length <= usersLimit.totalUsers) {
     //     dispatch(fetchMoreUsers(usersLimit.after));
     //   } else {
